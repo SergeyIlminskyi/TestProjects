@@ -40,7 +40,8 @@ namespace CustomConverterJSON
 
             var stopwatch = Stopwatch.StartNew();
             usersList.ToJSONReflection();
-            Console.Out.WriteLine(stopwatch.Elapsed.ToString());
+            stopwatch.Elapsed.ToString();
+            Console.Out.WriteLine(user.ToJSONReflection());
 
             Console.ReadKey();
         }
@@ -68,8 +69,7 @@ namespace CustomConverterJSON
             if (type.IsValueType)
                 return @this.ToString();
 
-            var isiEnum = type.GetInterface("System.Collections.IEnumerable", false)?.IsInterface;
-            if (isiEnum.HasValue && (bool)isiEnum)
+            if (type.GetInterfaces().Any(i => i.Equals(typeof(IEnumerable))))
             {
                 var itemsJSON = new List<string>();
                 foreach(var item in (IEnumerable)@this)
