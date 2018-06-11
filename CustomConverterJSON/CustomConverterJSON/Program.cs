@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Collections;
+using System.Diagnostics;
 
 namespace CustomConverterJSON
 {
@@ -31,8 +32,15 @@ namespace CustomConverterJSON
                 Companies = companies
             };
 
+            var usersList = new List<User>();
+            for (int i = 0; i < 100000 ; i++)
+            {
+                usersList.Add(user);
+            }
 
-            Console.Out.WriteLine(user.ToJSONReflection());
+            var stopwatch = Stopwatch.StartNew();
+            usersList.ToJSONReflection();
+            Console.Out.WriteLine(stopwatch.Elapsed.ToString());
 
             Console.ReadKey();
         }
@@ -68,24 +76,18 @@ namespace CustomConverterJSON
                 {
                     itemsJSON.Add(item.ToJSONReflection());
                 }
-                var arr = string.Join(Constants.Separator, itemsJSON);
-                return string.Format(Constants.Array, arr);
+                return string.Format(Constants.Array, string.Join(Constants.Separator, itemsJSON));
             }
 
-            var properties = type.GetProperties(BindingFlags.Instance | BindingFlags.Public);
-            var propertiesArray = from prop in properties
-                                  where prop.CanRead
-                             select          
-                                string.Format(Constants.Property,
-                               prop.Name,
-                               prop.GetValue(@this).ToJSONReflection());
+            var list = new List<string>();
 
-            var list = new List<string>(propertiesArray).ToArray();
+            foreach (var prop in type.GetProperties(BindingFlags.Instance | BindingFlags.Public))
+            {
+                if (prop.CanRead)
+                    list.Add(string.Format(Constants.Property, prop.Name, prop.GetValue(@this).ToJSONReflection()));
+            }
 
-            var result = "{" + string.Join(Constants.Separator, list) + "}";
-
-
-            return result; 
+            return  "{" + string.Join(Constants.Separator, list.ToArray()) + "}";
         }
     }
 
