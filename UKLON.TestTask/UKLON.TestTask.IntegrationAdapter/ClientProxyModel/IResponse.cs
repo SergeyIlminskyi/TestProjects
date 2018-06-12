@@ -8,7 +8,7 @@ namespace UKLON.TestTask.IntegrationAdapter
 {
     interface IResponse
     {
-        Result ResponseCode { get; }
+        string ResponseCode { get; }
         string ResponseText { get; }
     }
 }

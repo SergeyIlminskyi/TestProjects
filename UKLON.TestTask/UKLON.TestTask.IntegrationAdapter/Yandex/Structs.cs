@@ -9,11 +9,10 @@ namespace UKLON.TestTask.IntegrationAdapter
     internal static class YandexMappingResult
     {
 
-        public static readonly Dictionary<Result, string> MappingYandexResult = new Dictionary<Result, string>()
+        public static readonly Dictionary<int, Result> MappingYandexResult = new Dictionary<int, Result>()
         {
-            { Result.Success, "Operation completed successfully" },
-            { Result.TimeoutError, "During the operation, a timeout was received" },
-            { Result.UnknownError, "An unknown error occurred during the operation" },
+            { 200, Result.Success },
+            { 404, Result.NotFoundError },
         };
     }
 

@@ -4,6 +4,7 @@ using System.Net.Http;
 using System.Configuration;
 using System.Net.Http.Headers;
 using System.Xml.Serialization;
+using System.Collections.Generic;
 using System.IO;
 
 namespace UKLON.TestTask.IntegrationAdapter
@@ -11,17 +12,16 @@ namespace UKLON.TestTask.IntegrationAdapter
     public class RestProxyBase
     {
 
-        internal ResultResponse Invoke<TResponse>(string requestUri, string methodName, out TResponse response)
+        internal TResponse Invoke<TResponse>(string requestUri, out  ResultResponse result)
             where TResponse : BaseYandexResponse, new()
         {
-            var result = new ResultResponse(Result.Success, YandexMappingResult.MappingYandexResult);
-            response = new TResponse();
+           
+            var response = new TResponse();
 
             try
             {
                 using (var client = new HttpClient())
                 {
-
                   
                     var baseAddress = ConfigurationSettings.AppSettings["yandex-api-address"];
                     client.BaseAddress = new Uri(baseAddress);
@@ -32,6 +32,9 @@ namespace UKLON.TestTask.IntegrationAdapter
                     //logger.Info("ESB REQUEST " + methodName + " URL: " + baseAddress + requestUri);
 
                     var UrlResponse = client.GetAsync(requestUri).Result;
+
+                    result = Handle((int)UrlResponse.StatusCode, UrlResponse.StatusCode.ToString(), YandexMappingResult.MappingYandexResult);
+
                     if (UrlResponse.IsSuccessStatusCode)
                     {
                         string responseHttpClient = UrlResponse.Content.ReadAsStringAsync().Result;
@@ -40,26 +43,51 @@ namespace UKLON.TestTask.IntegrationAdapter
 
                         response = DeserializeXml<TResponse>(responseHttpClient);
                     }
-                    else
-                    {
-                        result = new ResultResponse(Result.UnknownError, YandexMappingResult.MappingYandexResult);
-                    }
                 }
             }
             catch (TimeoutException ex)
             {
                 //logger.Error(ex);
-                result = new ResultResponse(Result.TimeoutError, YandexMappingResult.MappingYandexResult);
+                result = Handle(Result.TimeoutError, ex);
             }
             catch (Exception ex)
             {
                 //logger.Error(ex);
-                result = new ResultResponse(Result.UnknownError, YandexMappingResult.MappingYandexResult);
+                result = Handle(Result.UnknownError, ex);
             }
+
+            return response;
+        }
+
+        private ResultResponse Handle(Result result, Exception ex)
+        {
+            return new ResultResponse()
+            {
+                ExecutionResult = result,
+                ExternalText = ex.ToString()
+            };
+        }
+
+
+        private ResultResponse Handle(int responseCode, string responseText, Dictionary<int, Result> customMapping)
+        {
+
+            Result mappedResult;
+
+            var result = new ResultResponse()
+            {
+                ExternalCode = responseCode.ToString(),
+                ExternalText = responseText
+            };
+
+            if (customMapping.TryGetValue(responseCode, out mappedResult))
+                result.ExecutionResult = mappedResult;
+            else
+                result.ExecutionResult = Result.UnknownError;
+
 
             return result;
         }
-
 
         private  T DeserializeXml<T>(string content)
         {
@@ -75,12 +103,12 @@ namespace UKLON.TestTask.IntegrationAdapter
 
     public static class ResultResponseExtensions
     {
-        public static TResult Throw<TResult>(this TResult response) where TResult : ResultResponse, new()
+        public static TResult Throw<TResult>(this TResult result) where TResult : ResultResponse, new()
         {
-            if (!response.IsSuccess)
+            if (!result.IsSuccess)
                 throw new Exception();
 
-            return response;
+            return result;
         }
     }
 }

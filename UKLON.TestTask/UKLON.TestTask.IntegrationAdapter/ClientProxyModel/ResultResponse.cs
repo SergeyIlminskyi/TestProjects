@@ -8,32 +8,24 @@ namespace UKLON.TestTask.IntegrationAdapter
 {
     public class ResultResponse : IResponse
     {
-        private Result responseResult { get; set; }
+        public string ExternalCode { get; set; }
 
-        private string responseText { get; set; }
+        public string ExternalText { get; set; }
 
-        Result IResponse.ResponseCode  { get { return responseResult; } }
+        public Result ExecutionResult { get; set; }
 
-        string IResponse.ResponseText  { get { return responseText; }  }
+        string IResponse.ResponseCode  { get { return ExternalCode; } }
 
-        public bool IsSuccess {  get { return responseResult == Result.Success; } }
+        string IResponse.ResponseText  { get { return ExternalText; }  }
 
-        public ResultResponse(Result executionResult, Dictionary<Result, string> customMapping)
-        {
-            string text;
-            responseResult = executionResult;
-
-            if (customMapping.TryGetValue(executionResult, out text))
-                responseText = text;
-            else
-                responseText = "";
-        }
+        public bool IsSuccess {  get { return ExecutionResult == Result.Success; } }
     }
 
     public enum Result
     {
         Success = 0,
-        TimeoutError = 1,
-        UnknownError = 2,
+        NotFoundError = 1,
+        TimeoutError = 2,
+        UnknownError = 3,
     }
 }
