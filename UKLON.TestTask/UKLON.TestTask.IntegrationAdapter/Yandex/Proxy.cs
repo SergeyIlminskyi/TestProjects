@@ -15,9 +15,12 @@ namespace UKLON.TestTask.IntegrationAdapter.Yandex
                 throw new ArgumentException("regionId");
 
             ResultResponse result;
-            var requestUri = string.Format("reginfo.xml?region={0}", regionId); //За неимением документации лучше не придумал 
+            var requestUri = string.Format("reginfo.xml?region={0}&lang={1}", regionId, "en"); //За неимением документации лучше не придумал 
             
-            var t = Invoke<FullRegionInfo>(requestUri, out result);
+            var response = Invoke<FullRegionInfo>(requestUri, out result);
+
+            if (result.IsSuccess && response?.Traffic.Region?.Id == regionId)
+                return (RegionTrafficInfo)response;
 
             return new RegionTrafficInfo();
         }

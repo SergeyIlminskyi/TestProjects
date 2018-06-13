@@ -33,7 +33,7 @@ namespace UKLON.TestTask.IntegrationAdapter
 
                     var UrlResponse = client.GetAsync(requestUri).Result;
 
-                    result = Handle((int)UrlResponse.StatusCode, UrlResponse.StatusCode.ToString(), YandexMappingResult.MappingYandexResult);
+                    result = Handle((int)UrlResponse.StatusCode, UrlResponse.StatusCode.ToString(), YandexMappingResult.MappingYandexResult);// Не имея документации, будем считать, что логика обработки заключается только в анализе http-кодов
 
                     if (UrlResponse.IsSuccessStatusCode)
                     {

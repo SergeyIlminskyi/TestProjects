@@ -12,7 +12,7 @@ namespace UKLON.TestTask
         {
             var t = new Proxy();
 
-            var res = t.GetRegionTrafficInfo(143);
+            var res = t.GetRegionTrafficInfo(213);
         }
     }
 }

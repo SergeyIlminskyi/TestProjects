@@ -3,6 +3,7 @@ using System.Globalization;
 using System.Runtime.Serialization;
 using System.Collections.Generic;
 using System.Xml.Serialization;
+using UKLON.TestTask.Structs;
 
 namespace UKLON.TestTask.IntegrationAdapter
 {
@@ -29,18 +30,21 @@ namespace UKLON.TestTask.IntegrationAdapter
 
         [XmlElement("traffic")]
         public TrafficInfo Traffic { get; set; }
-    }
 
-    public class RegionInfo
-    {
-        [XmlAttribute("id")]
-        public string Id { get; set; }
+        public static explicit operator RegionTrafficInfo(FullRegionInfo regionInfo)
+        {
+            if (regionInfo == null)
+                return null;
 
-        [XmlElement("level")]
-        public int Level { get; set; }
-
-        [XmlElement("icon")]
-        public string Icon { get; set; }
+            return new RegionTrafficInfo()
+            {
+                Id = (int)regionInfo?.Traffic?.Region?.Id,
+                Name = regionInfo?.Traffic?.Name,
+                Level = regionInfo?.Traffic?.Region?.Level,
+                Icon = regionInfo?.Traffic?.Region?.Icon,
+                Description = ""
+            };
+        }
     }
 
     public class TrafficInfo
@@ -50,6 +54,26 @@ namespace UKLON.TestTask.IntegrationAdapter
 
         [XmlElement("region")]
         public RegionInfo Region { get; set; }
- 
+
+    }
+
+    public class RegionInfo
+    {
+        [XmlAttribute("id")]
+        public int Id { get; set; }
+
+        [XmlElement("level")]
+        public int Level { get; set; }
+
+        [XmlElement("icon")]
+        public string Icon { get; set; }
+
+        [XmlElement("hint")]
+        public List<TrafficDescription> Description { get; set; }
+    }
+    public class TrafficDescription
+    {
+        [XmlAttribute("lang")]
+        public string Text { get; set; }
     }
 }
