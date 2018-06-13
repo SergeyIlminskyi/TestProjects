@@ -42,7 +42,7 @@
   <ItemGroup>
     <Compile Include="ClientProxyModel\IResponse.cs" />
     <Compile Include="ClientProxyModel\ResultResponse.cs" />
-    <Compile Include="RestProxyBase.cs" />
+    <Compile Include="HttpProxyBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Yandex\IProxy.cs" />
     <Compile Include="Yandex\Proxy.cs" />

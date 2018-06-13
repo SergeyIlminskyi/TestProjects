@@ -9,7 +9,7 @@ using System.IO;
 
 namespace UKLON.TestTask.IntegrationAdapter
 {
-    public class RestProxyBase
+    public class HttpProxyBase
     {
 
         internal TResponse Invoke<TResponse>(string requestUri, out  ResultResponse result)
