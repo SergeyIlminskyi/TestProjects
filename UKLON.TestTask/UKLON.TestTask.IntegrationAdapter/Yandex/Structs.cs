@@ -1,6 +1,4 @@
-﻿using System;
-using System.Globalization;
-using System.Runtime.Serialization;
+﻿using System.Linq;
 using System.Collections.Generic;
 using System.Xml.Serialization;
 using UKLON.TestTask.Structs;
@@ -13,7 +11,7 @@ namespace UKLON.TestTask.IntegrationAdapter
         public static readonly Dictionary<int, Result> MappingYandexResult = new Dictionary<int, Result>()
         {
             { 200, Result.Success },
-            { 404, Result.NotFoundError },
+            { 404, Result.NotFoundError }, //// Если нужна специфическая обработка для конкретніх кодов, их можно добавить в маппинг.
         };
     }
 
@@ -42,7 +40,7 @@ namespace UKLON.TestTask.IntegrationAdapter
                 Name = regionInfo?.Traffic?.Name,
                 Level = regionInfo?.Traffic?.Region?.Level,
                 Icon = regionInfo?.Traffic?.Region?.Icon,
-                Description = ""
+                Description = regionInfo?.Traffic?.Region?.Description.FirstOrDefault(x => x.Language == regionInfo.Language).Value
             };
         }
     }
@@ -69,11 +67,16 @@ namespace UKLON.TestTask.IntegrationAdapter
         public string Icon { get; set; }
 
         [XmlElement("hint")]
-        public List<TrafficDescription> Description { get; set; }
+        public TrafficDescription[] Description { get; set; }
+
     }
     public class TrafficDescription
     {
+
         [XmlAttribute("lang")]
-        public string Text { get; set; }
+        public string Language { get; set; }
+
+        [XmlText]
+        public string Value { get; set; }
     }
 }

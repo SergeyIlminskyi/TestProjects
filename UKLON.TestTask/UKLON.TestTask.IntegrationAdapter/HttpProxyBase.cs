@@ -15,7 +15,7 @@ namespace UKLON.TestTask.IntegrationAdapter
         internal TResponse Invoke<TResponse>(string requestUri, out  ResultResponse result)
             where TResponse : BaseYandexResponse, new()
         {
-           
+
             var response = new TResponse();
 
             try
@@ -29,30 +29,25 @@ namespace UKLON.TestTask.IntegrationAdapter
 
                     ServicePointManager.ServerCertificateValidationCallback += (sender, certificate, chain, sslPolicyErrors) => true;
 
-                    //logger.Info("ESB REQUEST " + methodName + " URL: " + baseAddress + requestUri);
-
                     var UrlResponse = client.GetAsync(requestUri).Result;
 
                     result = Handle((int)UrlResponse.StatusCode, UrlResponse.StatusCode.ToString(), YandexMappingResult.MappingYandexResult);// Не имея документации, будем считать, что логика обработки заключается только в анализе http-кодов
 
+                    
                     if (UrlResponse.IsSuccessStatusCode)
                     {
                         string responseHttpClient = UrlResponse.Content.ReadAsStringAsync().Result;
-
-                        //logger.Info("ESB RESPONSE " + methodName + responseHttpClient);
-
                         response = DeserializeXml<TResponse>(responseHttpClient);
                     }
+                    
                 }
             }
             catch (TimeoutException ex)
             {
-                //logger.Error(ex);
                 result = Handle(Result.TimeoutError, ex);
             }
             catch (Exception ex)
             {
-                //logger.Error(ex);
                 result = Handle(Result.UnknownError, ex);
             }
 

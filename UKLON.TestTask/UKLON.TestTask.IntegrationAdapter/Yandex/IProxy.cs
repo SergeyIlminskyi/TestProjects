@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using UKLON.TestTask.Structs;
+﻿using UKLON.TestTask.Structs;
 
 namespace UKLON.TestTask.IntegrationAdapter.Yandex
 {

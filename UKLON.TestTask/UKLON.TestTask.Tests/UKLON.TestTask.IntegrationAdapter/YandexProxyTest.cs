@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using UKLON.TestTask.IntegrationAdapter;
 using UKLON.TestTask.IntegrationAdapter.Yandex;
 using NUnit.Framework;
 
@@ -13,7 +11,8 @@ namespace UKLON.TestTask.Tests.UKLON.TestTask.IntegrationAdapter
         [Test, Order(1)]
         public void AddTest()
         {
-            var proxy = new Proxy();
+            var fileWorker = new FileWorker();
+            var proxy = new Proxy(fileWorker);
             var regionInfo = proxy.GetRegionTrafficInfo(MoscowRegionId);
             Assert.AreEqual(regionInfo.Id, MoscowRegionId);
         }
