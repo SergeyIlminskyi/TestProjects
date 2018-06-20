@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using UKLON.TestTask.IntegrationAdapter;
-using UKLON.TestTask.IntegrationAdapter.Yandex;
+using Y = UKLON.TestTask.IntegrationAdapter.Yandex;
+using G = UKLON.TestTask.IntegrationAdapter.Google;
 
 namespace UKLON.TestTask
 {
@@ -17,7 +18,11 @@ namespace UKLON.TestTask
 
                 var id = Console.ReadLine();
                 var fileWorker = new FileWorker();
-                var proxy = new Proxy(fileWorker);
+                var proxy = new Y.Proxy(fileWorker);
+
+                var gproxy = new G.Proxy();
+
+                gproxy.Temp();
 
                 var res = proxy.GetRegionTrafficInfo(Convert.ToInt32(id));
 
