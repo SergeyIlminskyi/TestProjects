@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace UKLON.TestTask.IntegrationAdapter.Google
 {
-    interface IProxy
+    public interface IProxy
     {
+        List<Data> GetSpreadsheetData<Data>(string spreadsheetId, string range)
+            where Data : new();
     }
 }

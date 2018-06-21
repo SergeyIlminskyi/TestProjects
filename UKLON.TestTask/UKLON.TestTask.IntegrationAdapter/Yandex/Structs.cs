@@ -23,6 +23,9 @@ namespace UKLON.TestTask.IntegrationAdapter
     [XmlRoot("info")]
     public class FullRegionInfo : BaseYandexResponse
     {
+        [XmlElement("region")]
+        public RegionInfo Region { get; set; }
+
         [XmlAttribute("lang")]
         public string Language { get; set; }
 
@@ -31,35 +34,38 @@ namespace UKLON.TestTask.IntegrationAdapter
 
         public static explicit operator RegionTrafficInfo(FullRegionInfo regionInfo)
         {
-            if (regionInfo == null)
+            if ( regionInfo?.Region == null )
                 return null;
 
             return new RegionTrafficInfo()
             {
-                Id = (int)regionInfo?.Traffic?.Region?.Id,
-                Name = regionInfo?.Traffic?.Name,
-                Level = regionInfo?.Traffic?.Region?.Level,
-                Icon = regionInfo?.Traffic?.Region?.Icon,
-                Description = regionInfo?.Traffic?.Region?.Description.FirstOrDefault(x => x.Language == regionInfo.Language).Value
+                Id = (int)regionInfo.Region.Id,
+                Name = regionInfo.Region.Name,
+                Level = regionInfo.Traffic.RegionInfo?.Level,
+                Icon = regionInfo.Traffic.RegionInfo?.Icon,
+                Description = regionInfo.Traffic.RegionInfo?.Description?.FirstOrDefault(x => x.Language == regionInfo.Language).Value
             };
         }
     }
-
-    public class TrafficInfo
-    {
-        [XmlElement("title")]
-        public string Name { get; set; }
-
-        [XmlElement("region")]
-        public RegionInfo Region { get; set; }
-
-    }
-
     public class RegionInfo
     {
         [XmlAttribute("id")]
         public int Id { get; set; }
 
+        [XmlElement("title")]
+        public string Name { get; set; }
+
+    }
+
+    public class TrafficInfo
+    {
+        [XmlElement("region")]
+        public RegionTraffic RegionInfo { get; set; }
+
+    }
+
+    public class RegionTraffic
+    {
         [XmlElement("level")]
         public int Level { get; set; }
 

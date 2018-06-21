@@ -8,7 +8,7 @@ namespace UKLON.TestTask.Structs
 {
     public class RegionTrafficInfo
     { 
-        public int Id { get; set; }
+        public int? Id { get; set; }
 
         public string Name { get; set; }
 

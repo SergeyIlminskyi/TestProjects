@@ -25,10 +25,10 @@ namespace UKLON.TestTask.IntegrationAdapter.Yandex
             
             var response = Invoke<FullRegionInfo>(requestUri, out result);
 
-            if (result.IsSuccess && response?.Traffic.Region?.Id == regionId) //Эта проверка добавлена, поскольку API возвращает дефолтный регион в том случае, если регион по Id не найден
+            if (result.IsSuccess)
                 regionTrafficInfo = (RegionTrafficInfo)response;
             else
-                regionTrafficInfo = new RegionTrafficInfo();
+                regionTrafficInfo = new RegionTrafficInfo() { Id = regionId };
   
             _fileWorker.WriteToFile(regionTrafficInfo, result);
 

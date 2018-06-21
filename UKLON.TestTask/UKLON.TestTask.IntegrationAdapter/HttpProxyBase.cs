@@ -34,7 +34,7 @@ namespace UKLON.TestTask.IntegrationAdapter
                     result = Handle((int)UrlResponse.StatusCode, UrlResponse.StatusCode.ToString(), YandexMappingResult.MappingYandexResult);// Не имея документации, будем считать, что логика обработки заключается только в анализе http-кодов
 
                     
-                    if (UrlResponse.IsSuccessStatusCode)
+                    if (result.IsSuccess)
                     {
                         string responseHttpClient = UrlResponse.Content.ReadAsStringAsync().Result;
                         response = DeserializeXml<TResponse>(responseHttpClient);

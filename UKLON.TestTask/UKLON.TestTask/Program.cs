@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Diagnostics;
+using UKLON.TestTask.Structs;
 using UKLON.TestTask.IntegrationAdapter;
 using Y = UKLON.TestTask.IntegrationAdapter.Yandex;
 using G = UKLON.TestTask.IntegrationAdapter.Google;
@@ -14,22 +16,26 @@ namespace UKLON.TestTask
         {
             do
             { 
-                Console.WriteLine("Write region id (Moscow - 213, Kyiv - 143, Chelyabinsk - 56):");
+                Console.WriteLine("Start! Please wait...");
 
-                var id = Console.ReadLine();
+ 
                 var fileWorker = new FileWorker();
-                var proxy = new Y.Proxy(fileWorker);
 
+                var yproxy = new Y.Proxy(fileWorker);
                 var gproxy = new G.Proxy();
 
-                gproxy.Temp();
 
-                var res = proxy.GetRegionTrafficInfo(Convert.ToInt32(id));
+                var stopwatch = Stopwatch.StartNew();
 
-                if(res.Id > 0)
-                    Console.WriteLine(res.FormatData());
-                else
-                    Console.WriteLine("Not found");
+                var regions  = gproxy.GetSpreadsheetData<RegionData>("1AhemqFP2lZ4ifcXGmArOydA3w24Yd7LdQ3KZveN-JR4", "A2:B");
+
+                foreach (var region in regions)
+                {
+                    yproxy.GetRegionTrafficInfo(Convert.ToInt32(region.Id));// В консоль не выводим, так как пишется в файл
+                }
+
+                Console.WriteLine(stopwatch.Elapsed.ToString());
+                Console.WriteLine("Finish!");
 
                 Console.WriteLine();
 
