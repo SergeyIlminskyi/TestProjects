@@ -18,4 +18,12 @@ namespace UKLON.TestTask.Structs
 
         public string Description { get; set; }
     }
+
+
+    public class RegionTrafficInfoWithStatus : RegionTrafficInfo
+    {
+        public string Code { get; set; }
+
+        public string Text { get; set; }
+    }
 }

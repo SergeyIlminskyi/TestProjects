@@ -29,10 +29,14 @@ namespace UKLON.TestTask
 
                 var regions  = gproxy.GetSpreadsheetData<RegionData>("1AhemqFP2lZ4ifcXGmArOydA3w24Yd7LdQ3KZveN-JR4", "A2:B");
 
-                foreach (var region in regions)
-                {
-                    yproxy.GetRegionTrafficInfo(Convert.ToInt32(region.Id));// В консоль не выводим, так как пишется в файл
-                }
+                //foreach (var region in regions)
+                //{
+                //    yproxy.GetRegionTrafficInfo(Convert.ToInt32(region.Id));// В консоль не выводим, так как пишется в файл
+                //}
+
+                //var result = yproxy.GetListRegionTrafficInfo(regions);
+
+                yproxy.WriteListRegionTrafficInfo(regions); //Многопоточность особо ничего не решит, поскольку потоки будут ждать пока освободится файл
 
                 Console.WriteLine(stopwatch.Elapsed.ToString());
                 Console.WriteLine("Finish!");

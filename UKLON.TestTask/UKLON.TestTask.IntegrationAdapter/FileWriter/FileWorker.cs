@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Configuration;
-
+using System.Collections.Generic;
 
 namespace UKLON.TestTask.IntegrationAdapter
 {
@@ -17,6 +17,25 @@ namespace UKLON.TestTask.IntegrationAdapter
                 using (StreamWriter sw = new StreamWriter(filePath, true, System.Text.Encoding.Default))
                 {
                     sw.WriteLine(String.Format("{0}     || Code = {1} | Text = {2}", data.FormatData() ,result.ResponseCode, result.ResponseText));
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
+
+        public void WriteListToFile<Data>(List<Data> dataList) 
+        {
+            try
+            {
+                using (StreamWriter sw = new StreamWriter(filePath, true, System.Text.Encoding.Default))
+                {
+                    foreach(var data in dataList)
+                    {
+                        sw.WriteLine(data.FormatData());
+                    }
+                    
                 }
             }
             catch (Exception ex)

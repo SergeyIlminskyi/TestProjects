@@ -6,6 +6,7 @@ using System.Net.Http.Headers;
 using System.Xml.Serialization;
 using System.Collections.Generic;
 using System.IO;
+using UKLON.TestTask.Structs;
 
 namespace UKLON.TestTask.IntegrationAdapter
 {
@@ -13,7 +14,7 @@ namespace UKLON.TestTask.IntegrationAdapter
     {
 
         internal TResponse Invoke<TResponse>(string requestUri, out  ResultResponse result)
-            where TResponse : BaseYandexResponse, new()
+            where TResponse : new()
         {
 
             var response = new TResponse();
@@ -54,12 +55,69 @@ namespace UKLON.TestTask.IntegrationAdapter
             return response;
         }
 
+        internal List<RegionTrafficInfoWithStatus> GetRegionsList(List<RegionData> regionData) //Можно красивее придумать, но у меня нет времени
+        {
+            var response = new List<RegionTrafficInfoWithStatus>();
+
+            using (var client = new HttpClient())
+            {
+                var baseAddress = ConfigurationSettings.AppSettings["yandex-api-address"];
+                client.BaseAddress = new Uri(baseAddress);
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/xml"));
+
+                ServicePointManager.ServerCertificateValidationCallback += (sender, certificate, chain, sslPolicyErrors) => true;
+
+                foreach(var data in regionData)
+                {
+
+                    var result = new ResultResponse();
+                    var item = new RegionTrafficInfoWithStatus();
+                    try
+                    {
+                        var UrlResponse = client.GetAsync(String.Format("reginfo.xml?region={0}&lang={1}" , data.Id, "en")).Result;
+
+                        result = Handle((int)UrlResponse.StatusCode, UrlResponse.StatusCode.ToString(), YandexMappingResult.MappingYandexResult);
+
+                        if (result.IsSuccess)
+                        {
+                            string responseHttpClient = UrlResponse.Content.ReadAsStringAsync().Result;
+                            item = (RegionTrafficInfoWithStatus)DeserializeXml<FullRegionInfo>(responseHttpClient);
+                            
+                        }
+                    }
+                    catch (TimeoutException ex)
+                    {
+                        result = Handle(Result.TimeoutError, ex);
+                        
+                    }
+                    catch (Exception ex)
+                    {
+                        result = Handle(Result.UnknownError, ex);
+                    }
+
+                    item.Code = result.ExternalCode;
+                    item.Text = result.ExternalText;
+
+                    if (!result.IsSuccess)
+                        item.Id = data.Id;
+
+                    response.Add(item);
+                }
+            }
+
+            return response;
+        }
+
+
+
+
         private ResultResponse Handle(Result result, Exception ex)
         {
             return new ResultResponse()
             {
                 ExecutionResult = result,
-                ExternalText = ex.ToString()
+                ExternalText = ex.ToString(),
+                ExternalCode = "---"
             };
         }
 

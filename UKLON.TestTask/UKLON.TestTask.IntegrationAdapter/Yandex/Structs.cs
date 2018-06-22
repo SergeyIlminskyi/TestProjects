@@ -15,13 +15,8 @@ namespace UKLON.TestTask.IntegrationAdapter
         };
     }
 
-    public class BaseYandexResponse
-    {
-
-    }
-
     [XmlRoot("info")]
-    public class FullRegionInfo : BaseYandexResponse
+    public class FullRegionInfo
     {
         [XmlElement("region")]
         public RegionInfo Region { get; set; }
@@ -38,6 +33,21 @@ namespace UKLON.TestTask.IntegrationAdapter
                 return null;
 
             return new RegionTrafficInfo()
+            {
+                Id = (int)regionInfo.Region.Id,
+                Name = regionInfo.Region.Name,
+                Level = regionInfo.Traffic.RegionInfo?.Level,
+                Icon = regionInfo.Traffic.RegionInfo?.Icon,
+                Description = regionInfo.Traffic.RegionInfo?.Description?.FirstOrDefault(x => x.Language == regionInfo.Language).Value
+            };
+        }
+
+        public static explicit operator RegionTrafficInfoWithStatus(FullRegionInfo regionInfo)
+        {
+            if (regionInfo?.Region == null)
+                return null;
+
+            return new RegionTrafficInfoWithStatus()
             {
                 Id = (int)regionInfo.Region.Id,
                 Name = regionInfo.Region.Name,

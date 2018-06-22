@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using UKLON.TestTask.Structs;
 
 
@@ -33,6 +34,18 @@ namespace UKLON.TestTask.IntegrationAdapter.Yandex
             _fileWorker.WriteToFile(regionTrafficInfo, result);
 
             return regionTrafficInfo;
+        }
+
+        public List<RegionTrafficInfoWithStatus> GetListRegionTrafficInfo(List<RegionData> regionData)
+        {
+            return GetRegionsList(regionData);
+        }
+
+        public void WriteListRegionTrafficInfo(List<RegionData> regionData)
+        {
+            var list = GetRegionsList(regionData);
+
+            _fileWorker.WriteListToFile(list);
         }
     }
 }

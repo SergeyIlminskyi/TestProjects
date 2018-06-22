@@ -23,28 +23,34 @@ namespace UKLON.TestTask.IntegrationAdapter.Google
 
             using (var service = GetSheetsService())
             {
-                SpreadsheetsResource.ValuesResource.GetRequest request = service.Spreadsheets.Values.Get(spreadsheetId, range);
-
-                var response = request.Execute();
-                
-                IList<IList<object>> values = response.Values;
-
-                if (values != null && values.Count > 0)
+                try
                 {
-                    var type = typeof(Data);
-                    var properties = type.GetProperties(BindingFlags.Instance | BindingFlags.Public);
-                    
+                    SpreadsheetsResource.ValuesResource.GetRequest request = service.Spreadsheets.Values.Get(spreadsheetId, range);
 
-                    foreach (var row in values)
+                    var response = request.Execute();
+
+                    IList<IList<object>> values = response.Values;
+
+                    if (values != null && values.Count > 0)
                     {
-                        var dataItem = new Data();
-                        foreach (var prop in properties.Select((value, index) => new { Value = value, Index = index }))
+                        var type = typeof(Data);
+                        var properties = type.GetProperties(BindingFlags.Instance | BindingFlags.Public);
+
+
+                        foreach (var row in values)
                         {
-                            prop.Value.SetValue(dataItem, Convert(row[prop.Index].ToString(), prop.Value.PropertyType));
+                            var dataItem = new Data();
+                            foreach (var prop in properties.Select((value, index) => new { Value = value, Index = index }))
+                            {
+                                prop.Value.SetValue(dataItem, Convert(row[prop.Index].ToString(), prop.Value.PropertyType));
+                            }
+                            dataList.Add(dataItem);
                         }
-                        dataList.Add(dataItem);
                     }
+
                 }
+                catch { } //На реализацию нормальной обработки нет времени
+                
 
                 return dataList;
             } 
