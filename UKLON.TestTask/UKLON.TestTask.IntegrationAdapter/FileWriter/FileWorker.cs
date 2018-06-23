@@ -9,7 +9,7 @@ namespace UKLON.TestTask.IntegrationAdapter
     public class FileWorker : IFileWorker
     {
         private static string filePath = ConfigurationSettings.AppSettings["file-path"];
-
+        static object locker = new object();
         public void WriteToFile<Data, Result>(Data data, Result result) 
                where Result : IResponse
         {
@@ -29,8 +29,7 @@ namespace UKLON.TestTask.IntegrationAdapter
         public void WriteListToFile<Data>(List<Data> dataList) 
         {
 
-            bool isSuccess = false;
-            do
+            lock (locker)
             {
                 try
                 {
@@ -43,11 +42,12 @@ namespace UKLON.TestTask.IntegrationAdapter
 
                     }
                     Console.WriteLine(String.Format("Thread with id={0} was write!", Thread.CurrentThread.ManagedThreadId));
-                    isSuccess = true;
                 }
-                catch { }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
             }
-            while (!isSuccess); // Костыль :)
         }
     }
 }
