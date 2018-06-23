@@ -24,7 +24,7 @@ namespace UKLON.TestTask
             var gproxy = new G.Proxy();
             var regions  = gproxy.GetSpreadsheetData<RegionData>("1AhemqFP2lZ4ifcXGmArOydA3w24Yd7LdQ3KZveN-JR4", "A2:B");
             
-            var regionParts = regions.Split(8);
+            var regionParts = regions.Split(35);
 
             List<Thread> threadList = new List<Thread>();
 
