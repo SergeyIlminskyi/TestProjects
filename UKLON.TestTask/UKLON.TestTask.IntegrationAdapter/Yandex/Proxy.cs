@@ -8,6 +8,7 @@ namespace UKLON.TestTask.IntegrationAdapter.Yandex
     public class Proxy : HttpProxyBase, IProxy
     {
         protected readonly IFileWorker _fileWorker;
+        public List<RegionData> dataList;
 
         public Proxy(IFileWorker fileWorker)
         {
@@ -45,6 +46,12 @@ namespace UKLON.TestTask.IntegrationAdapter.Yandex
         {
             var list = GetRegionsList(regionData);
 
+            _fileWorker.WriteListToFile(list);
+        }
+
+        public void WriteListRegionTrafficInfo()
+        {
+            var list = GetRegionsList(dataList);
             _fileWorker.WriteListToFile(list);
         }
     }

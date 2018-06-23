@@ -10,5 +10,7 @@ namespace UKLON.TestTask.IntegrationAdapter.Yandex
         List<RegionTrafficInfoWithStatus> GetListRegionTrafficInfo(List<RegionData> regionData);
 
         void WriteListRegionTrafficInfo(List<RegionData> regionData);
+
+        void WriteListRegionTrafficInfo();
     }
 }

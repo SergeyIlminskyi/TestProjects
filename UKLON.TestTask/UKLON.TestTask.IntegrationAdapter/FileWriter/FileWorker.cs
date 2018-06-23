@@ -2,6 +2,7 @@
 using System.IO;
 using System.Configuration;
 using System.Collections.Generic;
+using System.Threading;
 
 namespace UKLON.TestTask.IntegrationAdapter
 {
@@ -27,21 +28,26 @@ namespace UKLON.TestTask.IntegrationAdapter
 
         public void WriteListToFile<Data>(List<Data> dataList) 
         {
-            try
+
+            bool isSuccess = false;
+            do
             {
-                using (StreamWriter sw = new StreamWriter(filePath, true, System.Text.Encoding.Default))
+                try
                 {
-                    foreach(var data in dataList)
+                    using (StreamWriter sw = new StreamWriter(filePath, true, System.Text.Encoding.Default))
                     {
-                        sw.WriteLine(data.FormatData());
+                        foreach (var data in dataList)
+                        {
+                            sw.WriteLine(data.FormatData());
+                        }
+
                     }
-                    
+                    Console.WriteLine(String.Format("Thread with id={0} was write!", Thread.CurrentThread.ManagedThreadId));
+                    isSuccess = true;
                 }
+                catch { }
             }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
+            while (!isSuccess); // Костыль :)
         }
     }
 }

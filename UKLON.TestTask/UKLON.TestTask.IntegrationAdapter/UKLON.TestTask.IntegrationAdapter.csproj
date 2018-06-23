@@ -84,6 +84,7 @@
     <Compile Include="Google\Proxy.cs" />
     <Compile Include="Google\Structs.cs" />
     <Compile Include="HttpProxyBase.cs" />
+    <Compile Include="LinqExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Yandex\IProxy.cs" />
     <Compile Include="Yandex\Proxy.cs" />
