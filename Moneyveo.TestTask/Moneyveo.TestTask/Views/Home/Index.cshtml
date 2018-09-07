@@ -1,7 +1,50 @@
 ﻿
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Matrix rotation";
 }
 
-<h2>Index</h2>
+<h2>Matrix rotation</h2>
+
+<div class="row">
+    <div class="col-sm-4">
+        @using (Ajax.BeginForm("GenerateMatrix", "Home", new AjaxOptions() { HttpMethod = "Post", UpdateTargetId = "matrix" }, new { @class = "form-group" }))
+        {
+            <label for="size">Matrix size:</label>
+            <input type="number" class="form-control" id="size">
+
+            <button class="btn btn-primary" type="submit">Generate matrix</button>
+        }
+    </div>
+    <div class="col-sm-2">Or</div>
+    <div class="col-sm-4">
+        @using (Ajax.BeginForm("GenerateMatrix", "Home", new AjaxOptions() { HttpMethod = "Post", UpdateTargetId = "matrix" }, new { @class = "form-group" }))
+        {
+            <label for="size">Matrix size:</label>
+            <input type="number" class="form-control" id="size">
+
+            <button class="btn btn-primary" type="submit">Generate matrix</button>
+        }
+    </div>
+</div>
+
+
+
+@Ajax.ActionLink("Generate matrix", "GenerateMatrix", "Home", new { size = 5 }, new AjaxOptions { HttpMethod = "Post", UpdateTargetId = "matrix" }, new { @class = "btn btn-primary" })
+
+<div id="matrix">
+
+</div>
+
+<button type="button" class="btn">Basic</button>
+<button type="button" class="btn btn-default">Default</button>
+<button type="button" class="btn btn-primary">Primary</button>
+<button type="button" class="btn btn-success">Success</button>
+<button type="button" class="btn btn-info">Info</button>
+<button type="button" class="btn btn-warning">Warning</button>
+<button type="button" class="btn btn-danger">Danger</button>
+<button type="button" class="btn btn-link">Link</button>
+
+
+
+
 
