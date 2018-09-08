@@ -10,6 +10,14 @@ namespace Moneyveo.TestTask.Controllers
     {
         private readonly string matrixViewPath = "../Shared/HomePartialView/Matrix";
 
+        private IMatrixActions _matrixActions;
+        private MatrixModel matrix = new MatrixModel();
+
+        public HomeController(IMatrixActions matrixActions)
+        {
+            _matrixActions = matrixActions;
+        }
+
 
         [AcceptVerbs(HttpVerbs.Get)]
         public ActionResult Index()
@@ -26,11 +34,20 @@ namespace Moneyveo.TestTask.Controllers
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult GenerateMatrix(int size)
         {
-            return PartialView(matrixViewPath);
+            _matrixActions.GenerateMatrix(size, ref matrix);
+            return PartialView(matrixViewPath, matrix);
         }
 
         [AcceptVerbs(HttpVerbs.Get)]
-        public ActionResult RotateMatrix()
+        public ActionResult RotateMatrixRight()
+        {
+            _matrixActions.GenerateMatrix(6, ref matrix);
+
+            return PartialView(matrixViewPath, matrix);
+        }
+
+        [AcceptVerbs(HttpVerbs.Get)]
+        public ActionResult RotateMatrixLeft()
         {
             return PartialView(matrixViewPath);
         }

@@ -11,10 +11,11 @@ namespace Moneyveo.TestTask
 
         protected void Application_Start(object sender, EventArgs e)
         {
+            AutofacConfig.ConfigureContainer();
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
-
+            
         }
 
         protected void Session_Start(object sender, EventArgs e)

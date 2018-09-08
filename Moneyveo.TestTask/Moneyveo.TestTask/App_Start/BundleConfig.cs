@@ -11,7 +11,10 @@ namespace Moneyveo.TestTask
                 "~/Scripts/jquery.unobtrusive-ajax.js"
             ));
 
-            bundles.Add(new StyleBundle("~/assets/css/styles").Include());
+            bundles.Add(new StyleBundle("~/Content/styles").Include(
+                "~/Content/bootstrap.css",
+                "~/Content/Site.css"
+            ));
         }
     }
 }

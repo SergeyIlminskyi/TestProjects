@@ -3,46 +3,45 @@
     ViewBag.Title = "Matrix rotation";
 }
 
-<h2>Matrix rotation</h2>
+<h2>Matrix rotation. You can:</h2>
 
 <div class="row">
-    <div class="col-sm-4">
+    
+    <div class="col-sm-5 table-bordered">
+        <h3>Generate matrix with parameters</h3>
         @using (Ajax.BeginForm("GenerateMatrix", "Home", new AjaxOptions() { HttpMethod = "Post", UpdateTargetId = "matrix" }, new { @class = "form-group" }))
         {
-            <label for="size">Matrix size:</label>
-            <input type="number" class="form-control" id="size">
-
+            <div class="col-sm-4">
+                <label for="size">Matrix size:</label>
+            </div>
+            <div class="col-sm-8">
+                @Html.TextBox("size", null, new { @type = "number", @class = "form-control" })
+            </div>
+            
             <button class="btn btn-primary" type="submit">Generate matrix</button>
         }
     </div>
-    <div class="col-sm-2">Or</div>
-    <div class="col-sm-4">
-        @using (Ajax.BeginForm("GenerateMatrix", "Home", new AjaxOptions() { HttpMethod = "Post", UpdateTargetId = "matrix" }, new { @class = "form-group" }))
+    <div class="col-sm-2"><h3 class="center">Or</h3></div>
+    <div class="col-sm-5 table-bordered">
+        <h3>Load matrix from .csv file</h3>
+        @using (Ajax.BeginForm("ImportMatrixFromFile", "Home", new AjaxOptions() { HttpMethod = "Post", UpdateTargetId = "matrix" }, new { @class = "form-group" }))
         {
-            <label for="size">Matrix size:</label>
-            <input type="number" class="form-control" id="size">
+            <div class="col-sm-4">
+                <label for="size">File with matrix:</label>
+            </div>
+            <div class="col-sm-8">
+                <input type="file" class="form-control" id="size">
+            </div>
 
-            <button class="btn btn-primary" type="submit">Generate matrix</button>
+            <button class="btn btn-primary" type="submit">Read file</button>
         }
     </div>
 </div>
 
+<div id="matrix"></div>
 
 
-@Ajax.ActionLink("Generate matrix", "GenerateMatrix", "Home", new { size = 5 }, new AjaxOptions { HttpMethod = "Post", UpdateTargetId = "matrix" }, new { @class = "btn btn-primary" })
 
-<div id="matrix">
-
-</div>
-
-<button type="button" class="btn">Basic</button>
-<button type="button" class="btn btn-default">Default</button>
-<button type="button" class="btn btn-primary">Primary</button>
-<button type="button" class="btn btn-success">Success</button>
-<button type="button" class="btn btn-info">Info</button>
-<button type="button" class="btn btn-warning">Warning</button>
-<button type="button" class="btn btn-danger">Danger</button>
-<button type="button" class="btn btn-link">Link</button>
 
 
 
