@@ -5,11 +5,14 @@ using System.Web;
 
 namespace Moneyveo.TestTask
 {
-    public class MatrixModel
+    public class MatrixModel : IMatrixModel
     {
+       public MatrixModel()
+       {
+       }
        public int[,] Body { get; set; }
 
-       public int Size { get; set; }
+       public int Size { get { return this.Body?.GetLength(0) ?? 0; } }
 
        public bool IsEmpty { get { return Body == null; } }
     }

@@ -8,6 +8,10 @@ namespace Moneyveo.TestTask
 {
     public interface IMatrixActions
     {
-        void GenerateMatrix(int size, ref MatrixModel matrix);
+        void GenerateMatrix(int size, IMatrixModel matrix);
+
+        void RotateMatrixRight(IMatrixModel matrix);
+
+        void RotateMatrixLeft(IMatrixModel matrix);
     }
 }
