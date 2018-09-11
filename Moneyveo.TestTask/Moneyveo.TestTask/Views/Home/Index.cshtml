@@ -24,13 +24,13 @@
     <div class="col-sm-2"><h3 class="center">Or</h3></div>
     <div class="col-sm-5 table-bordered">
         <h3>Load matrix from .csv file</h3>
-        @using (Ajax.BeginForm("ImportMatrixFromFile", "Home", new AjaxOptions() { HttpMethod = "Post", UpdateTargetId = "matrix" }, new { @class = "form-group" }))
+        @using (Ajax.BeginForm("ImportMatrixFromFile", "Home", new AjaxOptions() { HttpMethod = "Post", UpdateTargetId = "matrix" }, new { @class = "form-group", enctype = "multipart/form-data" }))
         {
             <div class="col-sm-4">
                 <label for="size">File with matrix:</label>
             </div>
             <div class="col-sm-8">
-                <input type="file" class="form-control" id="size">
+                <input type="file" name="file" accept=".csv" class="form-control" />
             </div>
 
             <button class="btn btn-primary" type="submit">Read file</button>
