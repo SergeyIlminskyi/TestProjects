@@ -44,16 +44,16 @@ namespace Moneyveo.TestTask.Tests.RepositoryTests
         public void RotateMatrixRightTest()
         {
            
-            matrix.Body = baseMatrix;
+            matrix.Body = (int[,])baseMatrix.Clone();
             actions.RotateMatrixRight(matrix);
-            Assert.AreEqual(matrix.Body, leftMatrix);
+            Assert.AreEqual(matrix.Body, rightMatrix);
         }
 
 
         [Test, Order(3)]
         public void RotateMatrixLeftTest()
         {
-            matrix.Body = baseMatrix;
+            matrix.Body = (int[,])baseMatrix.Clone();
             actions.RotateMatrixLeft(matrix);
             Assert.AreEqual(matrix.Body, leftMatrix);
         }
