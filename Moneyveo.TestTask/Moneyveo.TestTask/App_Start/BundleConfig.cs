@@ -8,7 +8,8 @@ namespace Moneyveo.TestTask
         {
             bundles.Add(new ScriptBundle("~/Scripts/jquery").Include(
                 "~/Scripts/jquery-{version}.js",
-                "~/Scripts/jquery.unobtrusive-ajax.js"
+                "~/Scripts/jquery.unobtrusive-ajax.js",
+                "~/Scripts/jquery.form.js"
             ));
 
             bundles.Add(new StyleBundle("~/Content/styles").Include(

@@ -9,13 +9,17 @@ namespace Moneyveo.TestTask
     {
         public void GenerateMatrix(int size, IMatrixModel matrix)
         {
-            matrix.Body = new int[size, size];
+            matrix.Body = new int[size][];
 
             System.Random random = new System.Random();
 
             for(int i = 0; i < size; ++i)
+            {
+                matrix.Body[i] = new int[size];
                 for (int j = 0; j < size; ++j)
-                    matrix.Body[i, j] = random.Next(10,50);
+                    matrix.Body[i][j] = random.Next(10, 50);
+            }
+                
         }
 
         public void RotateMatrixRight(IMatrixModel matrix)
@@ -25,16 +29,16 @@ namespace Moneyveo.TestTask
                 {
                     if (i <= j)
                     {
-                        int temp = matrix.Body[i, j];
+                        int temp = matrix.Body[i][j];
 
-                        matrix.Body[i, j] = matrix.Body[matrix.Size - 1 - j, i];
-                        matrix.Body[matrix.Size - 1 - j, i] = matrix.Body[matrix.Size - 1 - i,
-                                                                          matrix.Size - 1 - j];
+                        matrix.Body[i][j] = matrix.Body[matrix.Size - 1 - j][i];
+                        matrix.Body[matrix.Size - 1 - j][i] = matrix.Body[matrix.Size - 1 - i]
+                                                                         [matrix.Size - 1 - j];
 
-                        matrix.Body[matrix.Size - 1 - i,
-                                    matrix.Size - 1 - j] = matrix.Body[j, matrix.Size - 1 - i];
+                        matrix.Body[matrix.Size - 1 - i][
+                                    matrix.Size - 1 - j] = matrix.Body[j][matrix.Size - 1 - i];
 
-                        matrix.Body[j, matrix.Size - 1 - i] = temp;
+                        matrix.Body[j][matrix.Size - 1 - i] = temp;
                     }
                 }
         }
@@ -46,14 +50,14 @@ namespace Moneyveo.TestTask
                 {
                     if (i <= j)
                     {
-                        int temp = matrix.Body[i, j];
+                        int temp = matrix.Body[i][j];
 
-                        matrix.Body[i, j] = matrix.Body[j, matrix.Size - 1 - i];
-                        matrix.Body[j, matrix.Size - 1 - i] = matrix.Body[matrix.Size - 1 - i,
+                        matrix.Body[i][j] = matrix.Body[j][matrix.Size - 1 - i];
+                        matrix.Body[j][matrix.Size - 1 - i] = matrix.Body[matrix.Size - 1 - i][
                                                                           matrix.Size - 1 - j];
-                        matrix.Body[matrix.Size - 1 - i,
-                                    matrix.Size - 1 - j] = matrix.Body[matrix.Size - 1 - j, i];
-                        matrix.Body[matrix.Size - 1 - j, i] = temp;
+                        matrix.Body[matrix.Size - 1 - i][
+                                    matrix.Size - 1 - j] = matrix.Body[matrix.Size - 1 - j][i];
+                        matrix.Body[matrix.Size - 1 - j][i] = temp;
                     }
                     
                 }

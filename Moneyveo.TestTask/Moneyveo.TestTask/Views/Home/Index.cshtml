@@ -6,7 +6,7 @@
 <h2>Matrix rotation. You can:</h2>
 
 <div class="row">
-    
+
     <div class="col-sm-5 table-bordered">
         <h3>Generate matrix with parameters</h3>
         @using (Ajax.BeginForm("GenerateMatrix", "Home", new AjaxOptions() { HttpMethod = "Post", UpdateTargetId = "matrix" }, new { @class = "form-group" }))
@@ -17,14 +17,15 @@
             <div class="col-sm-8">
                 @Html.TextBox("size", null, new { @type = "number", @class = "form-control" })
             </div>
-            
+
             <button class="btn btn-primary" type="submit">Generate matrix</button>
         }
     </div>
     <div class="col-sm-2"><h3 class="center">Or</h3></div>
     <div class="col-sm-5 table-bordered">
         <h3>Load matrix from .csv file</h3>
-        @using (Ajax.BeginForm("ImportMatrixFromFile", "Home", new AjaxOptions() { HttpMethod = "Post", UpdateTargetId = "matrix" }, new { @class = "form-group", enctype = "multipart/form-data" }))
+        @using (Ajax.BeginForm("ImportMatrixFromFile", "Home", new AjaxOptions() { HttpMethod = "Post", UpdateTargetId = "matrix" }, 
+            new { @class = "form-group", enctype = "multipart/form-data", @id = "fileForm" }))
         {
             <div class="col-sm-4">
                 <label for="size">File with matrix:</label>
@@ -33,15 +34,23 @@
                 <input type="file" name="file" accept=".csv" class="form-control" />
             </div>
 
-            <button class="btn btn-primary" type="submit">Read file</button>
+            <button id="temp" class="btn btn-primary" type="submit">Read file</button>
         }
     </div>
 </div>
 
 <div id="matrix"></div>
 
+<script>
+    $(document).ready(function () {
+        $('#temp').unbind("submit");
+        $(document).off('temp');
+        // bind 'myForm' and provide a simple callback function
+        $('#fileForm').ajaxForm(function () {
 
-
+        });
+    });
+</script>
 
 
 

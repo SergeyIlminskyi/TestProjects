@@ -10,7 +10,7 @@ namespace Moneyveo.TestTask
        public MatrixModel()
        {
        }
-       public int[,] Body { get; set; }
+       public int[][] Body { get; set; }
 
        public int Size { get { return this.Body?.GetLength(0) ?? 0; } }
 

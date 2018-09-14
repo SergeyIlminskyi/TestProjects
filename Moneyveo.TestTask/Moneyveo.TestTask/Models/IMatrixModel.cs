@@ -8,7 +8,7 @@ namespace Moneyveo.TestTask
 {
     public interface IMatrixModel
     {
-        int[,] Body { get; set; }
+        int[][] Body { get; set; }
 
         int Size { get; }
 

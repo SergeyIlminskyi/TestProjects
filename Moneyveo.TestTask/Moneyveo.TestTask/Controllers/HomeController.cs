@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Moneyveo.TestTask.Helpers;
 
 namespace Moneyveo.TestTask.Controllers
 {
@@ -59,6 +60,8 @@ namespace Moneyveo.TestTask.Controllers
             using (var memoryStream = new System.IO.MemoryStream())
             using (var streamWriter = new System.IO.StreamWriter(memoryStream))
             {
+                CSVParser.ExportCSV( _matrix, streamWriter, ';');
+                streamWriter.Flush();
                 return File(memoryStream.ToArray(), "text/csv", "ExportMatrix.csv");
             }
         }

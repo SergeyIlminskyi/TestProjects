@@ -114,6 +114,8 @@
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
+    <Content Include="Scripts\jquery.form.js" />
+    <Content Include="Scripts\jquery.form.min.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Web.config" />
@@ -126,6 +128,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\CSVParser.cs" />
     <Compile Include="Infrastructure\IRepository\IMatrixActions.cs" />
     <Compile Include="Infrastructure\Repository\MatrixActions.cs" />
     <Compile Include="Models\IMatrixModel.cs" />
@@ -139,6 +142,7 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\web.config" />
     <Content Include="Views\Shared\HomePartialView\Matrix.cshtml" />
+    <Content Include="Scripts\jquery.form.min.js.map" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
