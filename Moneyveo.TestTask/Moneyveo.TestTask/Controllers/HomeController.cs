@@ -30,7 +30,8 @@ namespace Moneyveo.TestTask.Controllers
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult ImportMatrixFromFile(HttpPostedFileBase file)
         {
-            return PartialView(matrixViewPath);
+            _matrix.Body = CSVParser.ImportCSV(file, ';');
+            return PartialView(matrixViewPath, _matrix);
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
