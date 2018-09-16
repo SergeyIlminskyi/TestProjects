@@ -31,6 +31,9 @@ namespace Moneyveo.TestTask.Controllers
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult ImportMatrixFromFile(HttpPostedFileBase file)
         {
+            if (file == null)
+                throw new ValidationException("File was not loaded!");
+
             _matrix.Body = CSVParser.ImportCSV(file, ';');
             return PartialView(matrixViewPath, _matrix);
         }
