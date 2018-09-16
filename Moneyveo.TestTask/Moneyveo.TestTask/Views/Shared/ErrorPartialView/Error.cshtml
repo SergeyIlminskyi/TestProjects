@@ -1,0 +1,20 @@
+﻿@{
+    var Model = ViewData.Model as Moneyveo.TestTask.Models.ErrorModel;
+}
+
+
+<div class="row mt15">
+    @if (Model.Type == Moneyveo.TestTask.Models.ErrorType.Warning)
+    {
+        <div class="alert alert-warning" role="alert">
+            Warning!  @Model.Message
+        </div>
+    }
+    @if (Model.Type == Moneyveo.TestTask.Models.ErrorType.Critical)
+    {
+        <div class="alert alert-danger" role="alert">
+            Error!  @Model.Message
+        </div>       
+ 
+    }
+</div>

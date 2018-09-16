@@ -123,14 +123,17 @@
   <ItemGroup>
     <Compile Include="App_Start\AutofacConfig.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Filters\HandleErrorAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helpers\CSVParser.cs" />
     <Compile Include="Infrastructure\IRepository\IMatrixActions.cs" />
     <Compile Include="Infrastructure\Repository\MatrixActions.cs" />
+    <Compile Include="Models\ErrorModel.cs" />
     <Compile Include="Models\IMatrixModel.cs" />
     <Compile Include="Models\MatrixModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -143,6 +146,7 @@
     <Content Include="Views\web.config" />
     <Content Include="Views\Shared\HomePartialView\Matrix.cshtml" />
     <Content Include="Scripts\jquery.form.min.js.map" />
+    <Content Include="Views\Shared\ErrorPartialView\Error.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

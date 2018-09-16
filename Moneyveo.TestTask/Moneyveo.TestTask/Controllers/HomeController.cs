@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -37,6 +38,9 @@ namespace Moneyveo.TestTask.Controllers
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult GenerateMatrix(int size)
         {
+            if (size <= 1)
+                throw new ValidationException("Size of matrix must be 2x2 and more.");
+
             _matrixActions.GenerateMatrix(size, _matrix);
             return PartialView(matrixViewPath, _matrix);
         }

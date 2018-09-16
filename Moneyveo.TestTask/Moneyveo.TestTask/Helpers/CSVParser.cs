@@ -8,7 +8,7 @@ namespace Moneyveo.TestTask.Helpers
 {
     public class CSVParser
     {
-        #region Import CVS
+        #region Export CVS
         public static void ExportCSV(IMatrixModel matrix, System.IO.StreamWriter file, char separatorCVS)
         {
             for (int i = 0; i < matrix.Size; i++)
@@ -51,9 +51,9 @@ namespace Moneyveo.TestTask.Helpers
                 }
 
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-
+                throw new Exception("Error of file parsing! Check, that file is filled correctly.");
             }
 
             return body.ToArray();
