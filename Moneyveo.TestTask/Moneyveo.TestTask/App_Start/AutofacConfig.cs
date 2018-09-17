@@ -18,7 +18,7 @@ namespace Moneyveo.TestTask
             builder.RegisterControllers(typeof(Global).Assembly);
 
 
-            builder.RegisterType<MatrixActions>().As<IMatrixActions>();
+            builder.RegisterType<MatrixActions>().As<IMatrixActions>().SingleInstance();
             builder.RegisterType<MatrixModel>().As<IMatrixModel>().SingleInstance();
 
             var container = builder.Build();
