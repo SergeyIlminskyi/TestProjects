@@ -1,12 +1,22 @@
 ﻿using System;
-using System.Collections.Generic;
+
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Collections.Generic;
+using NUnit.Framework;
+using ABMCloud.Entites;
+using ABMCloud.Dao;
 
 namespace ABMCloud.Test
 {
-    class ABMCloud
+    class ABMCloudDaoTest
     {
+        IRepository _repository = new Repository();
+
+        [Test, Order(1)]
+        public void GetCollaboratorsTest()
+        {
+            var collaborators = _repository.GetCollaborators();
+            Assert.IsTrue(collaborators.Count > 1);
+        }
     }
 }

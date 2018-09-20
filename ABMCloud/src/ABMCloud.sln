@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ABMCloud.Dao", "ABMCloud.Da
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ABMCloud.Test", "ABMCloud.Test\ABMCloud.Test.csproj", "{5866683A-DDF4-4C96-8AAE-8C3D859ABA49}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ABMCloud.Entities", "ABMCloud.Structs\ABMCloud.Entities.csproj", "{DED8425A-B6B1-426F-B18A-0F9E6AA6D4DF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ABMCloud.Entities", "ABMCloud.Entities\ABMCloud.Entities.csproj", "{DED8425A-B6B1-426F-B18A-0F9E6AA6D4DF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

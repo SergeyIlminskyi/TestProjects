@@ -51,11 +51,23 @@
     <Compile Include="Context\CollaboratorContext.cs" />
     <Compile Include="Entities\Collaborator.cs" />
     <Compile Include="Entities\CollaboratorsVacation.cs" />
+    <Compile Include="Entities\Entity.cs" />
+    <Compile Include="Entities\IEntity.cs" />
+    <Compile Include="IRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ABMCloud.Entities\ABMCloud.Entities.csproj">
+      <Project>{ded8425a-b6b1-426f-b18a-0f9e6aa6d4df}</Project>
+      <Name>ABMCloud.Entities</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
