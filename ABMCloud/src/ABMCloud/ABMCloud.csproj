@@ -121,11 +121,21 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Filters\HandleErrorFilter.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\HttpContextFactory.cs" />
+    <Compile Include="Helpers\ListCountPager.cs" />
+    <Compile Include="Helpers\UrlHelperExtension.cs" />
+    <Compile Include="HtmlHelpers\PagingHalpers.cs" />
+    <Compile Include="Models\Collaborator\CollaboratorDetailsModel.cs" />
+    <Compile Include="Models\Collaborator\CollaboratorFilterModel.cs" />
+    <Compile Include="Models\Collaborator\CollaboratorModel.cs" />
+    <Compile Include="Models\Collaborator\CollaboratorViewModel.cs" />
+    <Compile Include="Models\PagingInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -136,6 +146,13 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Pagination.cshtml" />
+    <Content Include="Views\RangeErrorPage.cshtml" />
+    <Content Include="Views\ResultMessage.cshtml" />
+    <Content Include="Views\Home\CollaboratorList.cshtml" />
+    <Content Include="Views\Home\CollaboratorDetails.cshtml" />
+    <Content Include="Views\Shared\CollaboratorsPartialView\CollaboratorsTable.cshtml" />
+    <Content Include="Views\Shared\CollaboratorsPartialView\Filter.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -145,7 +162,13 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Infrastructure\" />
-    <Folder Include="Models\" />
+    <Folder Include="Views\Collaborators\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ABMCloud.Entities\ABMCloud.Entities.csproj">
+      <Project>{ded8425a-b6b1-426f-b18a-0f9e6aa6d4df}</Project>
+      <Name>ABMCloud.Entities</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

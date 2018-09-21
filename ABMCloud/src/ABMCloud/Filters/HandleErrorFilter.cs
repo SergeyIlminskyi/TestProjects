@@ -6,7 +6,7 @@ using System.Web.Mvc;
 
 namespace ABMCloud.Filters
 {
-    public class HandleErrorFilter : FilterAttribute, IExceptionFilter
+    public class ExceptionHandlerFilter : FilterAttribute, IExceptionFilter
     {
         public void OnException(ExceptionContext exceptionContext)
         {
@@ -15,7 +15,23 @@ namespace ABMCloud.Filters
             {
                 //exceptionContext.Result =
                 exceptionContext.ExceptionHandled = true;
+
+
             }
+
+
+            //if (!exceptionContext.ExceptionHandled)
+            //{
+            //    string message = baseController._repository.RepositoryResponseMessage;
+            //    _logger.Error(message);
+
+            //    filterContext.Result = new ViewResult
+            //    {
+            //        ViewName = "RangeErrorPage",
+            //        ViewData = filterContext.Controller.ViewData
+            //    };
+            //    filterContext.ExceptionHandled = true;
+            //}
         }
     }
 }

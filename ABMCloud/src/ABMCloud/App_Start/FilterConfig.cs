@@ -7,7 +7,7 @@ namespace ABMCloud
     {
         public static void RegisterGlobalFilters(GlobalFilterCollection filters)
         {
-            filters.Add(new HandleErrorFilter());
+            filters.Add(new ExceptionHandlerFilter());
         }
     }
 }

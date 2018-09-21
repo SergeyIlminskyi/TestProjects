@@ -1,0 +1,31 @@
+﻿@model ABMCloud.Models.CollaboratorViewModel
+
+
+@{
+    ViewBag.Title = "CollaboratorList";
+}
+
+<head>
+    <title>@ViewBag.Title</title>
+</head>
+
+<div class="container body-content">
+    <h1>@ViewBag.Title</h1>
+
+
+    <button class="u-btn primary" type="button" onclick="window.location.href = '@Url.Action("CrossSaleDetails", "CrossSale")'">+ Добавить</button>
+    <div class="u-fields__separator"></div>
+
+    <p>Для выбора рекламной компании воспользуйтесь фильтром</p>
+
+    @using (Html.BeginForm("CrossSalesList", "CrossSale", FormMethod.Post, new { id = "crossSaleForm" }))
+    {
+        @Html.Partial("CollaboratorsPartialView/Filter", Model.Filter)
+
+        @Html.Partial("Pagination", Model.Filter.CurrentPagingInfo)
+
+        @Html.Partial("CollaboratorsPartialView/CollaboratorsTable", Model.CollaboratorsModel)
+
+        @Html.Partial("Pagination", Model.Filter.CurrentPagingInfo)
+    }
+</div>

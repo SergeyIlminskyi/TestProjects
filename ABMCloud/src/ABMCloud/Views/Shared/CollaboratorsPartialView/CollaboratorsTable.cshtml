@@ -1,0 +1,12 @@
+﻿
+@model ABMCloud.Models.CollaboratorModel
+
+@foreach (var item in @Model.LogsList)
+{
+    <div class="flx-row list__row">
+
+        <div class="columns options-col">
+            @Html.ActionLink("Изменить", "CrossSaleDetails", "CrossSale", new { id = item.Id }, null)
+        </div>
+    </div>
+}

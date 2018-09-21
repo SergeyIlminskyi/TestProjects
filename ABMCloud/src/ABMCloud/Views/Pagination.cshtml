@@ -1,0 +1,21 @@
+﻿@using ABMCloud.HtmlHelpers
+@using ABMCloud.Helpers
+
+
+@model ABMCloud.Models.PagingInfo
+
+<div class="page-pager flx-row">
+    <div class="columns small-8 page-pager__text">
+        @{
+            var itemsPerPage = @Model.ItemsPerPage >= @Model.TotalItems ? @Model.TotalItems : @Model.ItemsPerPage;
+        }
+        @Html.Raw(" Записей:") @itemsPerPage @Html.Raw(" из ") @Model.TotalItems
+        <div class="page-pager__text-gutter">
+            Показывать по:
+            @Html.ListCountPager(Model.ItemsPerPage, Model.TotalItems, new[] { 10, 20, 50, 100 }, string.Empty, Model.RouteValueDictionary)
+        </div>
+    </div>
+    <div class="columns small-4 text-align-right">
+        @Html.PageLinks(Model, x => Url.Filter(x))
+    </div>
+</div>

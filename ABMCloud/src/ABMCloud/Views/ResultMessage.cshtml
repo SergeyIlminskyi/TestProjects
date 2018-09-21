@@ -1,0 +1,36 @@
+﻿@using ABMCloud.Controllers;
+
+@if (TempData[Alerts.SUCCESS] != null && (TempData[Alerts.ERROR] == null && TempData[Alerts.ERRORLIST] == null))
+{
+    <br />
+    <div class="notification success" id="divSuccess">
+        <h4>OK</h4>
+        <span>@TempData[Alerts.SUCCESS]</span>
+    </div>
+}
+@if (TempData[Alerts.ERROR] != null)
+{
+    <br />
+    <div class="notification error" id="divError">
+        <h4>ERROR</h4>
+        <span>@TempData[Alerts.ERROR]</span>
+    </div>
+}
+
+@if (TempData[Alerts.ATTENTION] != null)
+{
+    <br />
+    <div class="notification attention" id="divWarning">
+        <h4>WARNING</h4>
+        <span>@TempData[Alerts.ATTENTION]</span>
+    </div>
+}
+
+@if (TempData[Alerts.INFORMATION] != null)
+{
+    <br />
+    <div class="notification" id="divInfo">
+        <h4>INFO</h4>
+        <span>@TempData[Alerts.INFORMATION]</span>
+    </div>
+}
