@@ -8,11 +8,13 @@ namespace ABMCloud
         {
             bundles.Add(new ScriptBundle("~/Scripts/jquery").Include(
                 "~/Scripts/jquery-{version}.js",
+                "~/Scripts/jquery-ui-{version}.js",
                 "~/Scripts/jquery.unobtrusive-ajax.js"
             ));
 
             bundles.Add(new StyleBundle("~/Content/styles").Include(
-                "~/Content/bootstrap.css",
+                "~/Content/bootstrap.min.css",
+                "~/Content/jquery-ui.min.css",
                 "~/Content/Site.css"
             ));
         }

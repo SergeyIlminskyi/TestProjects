@@ -10,7 +10,7 @@
                 <th class="col-md-2">Name</th>
                 <th class="col-md-2">Surname</th>
                 <th class="col-md-2">Patronymic</th>
-                <th>Last date of vacation</th>
+                <th class="col-md-5">Last date of vacation</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -18,15 +18,15 @@
             @foreach (var item in @Model.EmployeesList)
             {
             <tr class="clickable-row">
-                <td class="col-md-5">@item.Name</td>
-                <td>@item.Surname</td>
-                <td>@item.Patronymic</td>
-                <td>@item.Birthday</td>
+                <td class="col-md-2">@item.Name</td>
+                <td class="col-md-2">@item.Surname</td>
+                <td class="col-md-2">@item.Patronymic</td>
+                <td class="col-md-5">@item.Birthday</td>
                 <td>
                     <button type="button" class="btn btn-warning btn-xs" onclick="window.location.href = '@Url.Action("EditEmployee", "Employee", new { id = item.Id })'">
                         <span class="glyphicon glyphicon-pencil"></span>
                     </button>
-                    <button type="button" class="btn btn-danger btn-xs" onclick="window.location.href = '@Ajax.ActionLink("RemoveEmployee", "Employee", new { id = item.Id }, null)'">
+                    <button type="button" class="btn btn-danger btn-xs" onclick="window.location.href = '@Url.Action("RemoveEmployee", "Employee", new { id = item.Id })'">
                         <span class="glyphicon glyphicon-remove"></span>
                     </button>
                 </td>
@@ -42,5 +42,6 @@
         <span class="glyphicon glyphicon-plus"></span>
     </button>
 </div>
+
 
 
