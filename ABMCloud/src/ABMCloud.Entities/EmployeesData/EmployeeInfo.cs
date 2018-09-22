@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ABMCloud.Dao.Entitis
+namespace ABMCloud.Entites
 {
-    class Collaborator : Entity
+    public class EmployeeInfo
     {
         public long Id { get; set; }
 
@@ -17,5 +17,7 @@ namespace ABMCloud.Dao.Entitis
         public string Patronymic { get; set; }
 
         public DateTime Birthday { get; set; }
+
+        public DateTime LastVacationDate { get; set; }
     }
 }

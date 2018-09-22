@@ -6,8 +6,8 @@ using ABMCloud.Entites;
 
 namespace ABMCloud.Models
 {
-    public class CollaboratorDetailsModel
+    public class EmployeeDetailsModel
     {
-        public EmployeeInfo CollaboratorDetails { get; set; }
+        public EmployeeInfo EmployeeDetails { get; set; }
     }
 }

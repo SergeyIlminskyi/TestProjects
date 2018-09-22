@@ -9,11 +9,11 @@ namespace ABMCloud.Dao
 {
     public class Repository : IRepository
     {
-        public long AddCollaborator(CollaboratorInfo collaborator)
+        public long AddEmployee(EmployeeInfo collaborator)
         {
-            using (CollaboratorContext db = new CollaboratorContext())
+            using (EmployeeContext db = new EmployeeContext())
             {
-                var item = db.Collaborators.Add(new Entitis.Collaborator()
+                var item = db.Employees.Add(new Entitis.Employee()
                 {
                     Name = collaborator.Name,
                     Surname = collaborator.Surname,
@@ -28,15 +28,15 @@ namespace ABMCloud.Dao
             }
         }
 
-        public List<CollaboratorInfo> GetCollaborators()
+        public List<EmployeeInfo> GetEmployees()
         {
-            using (CollaboratorContext db = new CollaboratorContext())
+            using (EmployeeContext db = new EmployeeContext())
             {
-                var collaborators = new List<CollaboratorInfo>();
+                var collaborators = new List<EmployeeInfo>();
 
-                foreach(var collaborator in db.Collaborators.ToList())
+                foreach(var collaborator in db.Employees.ToList())
                 {
-                    var item = new CollaboratorInfo()
+                    var item = new EmployeeInfo()
                     {
                         Id = collaborator.Id,
                         Name = collaborator.Name,

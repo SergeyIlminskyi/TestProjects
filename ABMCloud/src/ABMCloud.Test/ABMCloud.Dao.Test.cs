@@ -13,9 +13,9 @@ namespace ABMCloud.Test
         IRepository _repository = new Repository();
 
         [Test, Order(1)]
-        public void AddCollaboratorTest()
+        public void AddEmployeeTest()
         {
-            var item = new CollaboratorInfo()
+            var item = new EmployeeInfo()
             {
                 Name = "Sergey",
                 Surname = "Ilminskyi",
@@ -23,13 +23,13 @@ namespace ABMCloud.Test
                 Birthday = new DateTime(1992, 2, 12)
             };
 
-            Assert.IsTrue(_repository.AddCollaborator(item) > 0);
+            Assert.IsTrue(_repository.AddEmployee(item) > 0);
         }
 
         [Test, Order(2)]
-        public void GetCollaboratorsTest()
+        public void GetEmployeesTest()
         {
-            var collaborators = _repository.GetCollaborators();
+            var collaborators = _repository.GetEmployees();
             Assert.IsTrue(collaborators.Count > 1);
         }
     }

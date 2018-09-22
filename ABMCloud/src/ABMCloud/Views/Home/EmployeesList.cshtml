@@ -1,8 +1,8 @@
-﻿@model ABMCloud.Models.CollaboratorViewModel
+﻿@model ABMCloud.Models.EmployeeViewModel
 
 
 @{
-    ViewBag.Title = "Collaborators";
+    ViewBag.Title = "Employees";
 }
 
 <head>
@@ -19,11 +19,11 @@
 
     @using (Html.BeginForm("CrossSalesList", "CrossSale", FormMethod.Post, new { id = "crossSaleForm" }))
     {
-        @Html.Partial("CollaboratorsPartialView/Filter", Model.Filter)
+        @Html.Partial("EmployeesPartialView/Filter", Model.Filter)
 
         @Html.Partial("Pagination", Model.Filter.CurrentPagingInfo)
 
-        @Html.Partial("CollaboratorsPartialView/CollaboratorsTable", Model.CollaboratorsModel)
+        @Html.Partial("EmployeesPartialView/EmployeesTable", Model.EmployeesModel)
 
         @Html.Partial("Pagination", Model.Filter.CurrentPagingInfo)
     }

@@ -48,9 +48,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Context\CollaboratorContext.cs" />
-    <Compile Include="Entities\Collaborator.cs" />
-    <Compile Include="Entities\CollaboratorsVacation.cs" />
+    <Compile Include="Context\EmployeeContext.cs" />
+    <Compile Include="Entities\Employee.cs" />
+    <Compile Include="Entities\EmployeesVacation.cs" />
     <Compile Include="Entities\Entity.cs" />
     <Compile Include="Entities\IEntity.cs" />
     <Compile Include="IRepository.cs" />

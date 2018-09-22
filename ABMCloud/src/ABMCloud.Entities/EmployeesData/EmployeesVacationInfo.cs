@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace ABMCloud.Entites
 {
-    public class CollaboratorsVacationInfo
+    public class EmployeesVacationInfo
     {
         public long Id { get; set; }
 
-        public CollaboratorInfo Vacationist { get; set; }
+        public EmployeeInfo Vacationist { get; set; }
 
-        public CollaboratorInfo Substituting { get; set; }
+        public EmployeeInfo Substituting { get; set; }
 
         public DateTime StartDate { get; set; }
 

@@ -137,10 +137,11 @@
     <Compile Include="Helpers\ListCountPager.cs" />
     <Compile Include="Helpers\UrlHelperExtension.cs" />
     <Compile Include="HtmlHelpers\PagingHalpers.cs" />
-    <Compile Include="Models\Collaborator\CollaboratorDetailsModel.cs" />
-    <Compile Include="Models\Collaborator\CollaboratorFilterModel.cs" />
-    <Compile Include="Models\Collaborator\CollaboratorModel.cs" />
-    <Compile Include="Models\Collaborator\CollaboratorViewModel.cs" />
+    <Compile Include="Models\Employees\EmployeeDetailsModel.cs" />
+    <Compile Include="Models\Employees\EmployeeFilterModel.cs" />
+    <Compile Include="Models\Employees\EmployeeModel.cs" />
+    <Compile Include="Models\Employees\EmployeeViewModel.cs" />
+    <Compile Include="Models\FilterModel.cs" />
     <Compile Include="Models\PagingInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -155,10 +156,10 @@
     <Content Include="Views\Shared\Pagination.cshtml" />
     <Content Include="Views\Shared\RangeErrorPage.cshtml" />
     <Content Include="Views\Shared\ResultMessage.cshtml" />
-    <Content Include="Views\Home\CollaboratorList.cshtml" />
-    <Content Include="Views\Home\CollaboratorDetails.cshtml" />
-    <Content Include="Views\Shared\CollaboratorsPartialView\CollaboratorsTable.cshtml" />
-    <Content Include="Views\Shared\CollaboratorsPartialView\Filter.cshtml" />
+    <Content Include="Views\Home\EmployeesList.cshtml" />
+    <Content Include="Views\Home\EmployeeDetails.cshtml" />
+    <Content Include="Views\Shared\EmployeesPartialView\EmployeesTable.cshtml" />
+    <Content Include="Views\Shared\EmployeesPartialView\Filter.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -168,7 +169,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Infrastructure\" />
-    <Folder Include="Views\Collaborators\" />
+    <Folder Include="Views\Employee\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ABMCloud.Dao\ABMCloud.Dao.csproj">

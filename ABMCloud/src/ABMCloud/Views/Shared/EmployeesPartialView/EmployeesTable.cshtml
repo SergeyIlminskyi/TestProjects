@@ -1,5 +1,5 @@
 ﻿
-@model ABMCloud.Models.CollaboratorModel
+@model ABMCloud.Models.EmployeeModel
 
 
 
@@ -15,7 +15,7 @@
             </tr>
         </thead>
         <tbody>
-            @foreach (var item in @Model.LogsList)
+            @foreach (var item in @Model.EmployeesList)
             {
             <tr class="clickable-row" href="@Url.Action("CollaboratorDetails", "Home")">
                 <td>@item.Name</td>

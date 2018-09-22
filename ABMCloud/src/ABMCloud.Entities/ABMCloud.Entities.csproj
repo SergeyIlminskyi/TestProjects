@@ -42,8 +42,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CollaboratorsData\CollaboratorInfo.cs" />
-    <Compile Include="CollaboratorsData\CollaboratorsVacationInfo.cs" />
+    <Compile Include="EmployeesData\EmployeeInfo.cs" />
+    <Compile Include="EmployeesData\EmployeesVacationInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

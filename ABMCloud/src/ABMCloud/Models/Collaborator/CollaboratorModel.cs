@@ -8,7 +8,7 @@ namespace ABMCloud.Models
 {
     public class CollaboratorModel
     {
-        public IReadOnlyList<CollaboratorInfo> LogsList { get; set; }
+        public IReadOnlyList<EmployeeInfo> LogsList { get; set; }
 
         public long CollaboratorsCount { get; set; } //вынести в базовый
     }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ABMCloud.Dao.Entitis
 {
-    class CollaboratorsVacation : Entity
+    class EmployeesVacation : Entity
     {
         public long Id { get; set; }
 

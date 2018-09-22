@@ -9,8 +9,8 @@ namespace ABMCloud.Dao
 {
     public interface IRepository
     {
-        long AddCollaborator(CollaboratorInfo collaborator);
+        long AddEmployee(EmployeeInfo collaborator);
 
-        List<CollaboratorInfo> GetCollaborators();
+        List<EmployeeInfo> GetEmployees();
     }
 }

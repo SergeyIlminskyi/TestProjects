@@ -23,30 +23,30 @@ namespace ABMCloud
             return View();
         }
 
-        public ActionResult CollaboratorList(CollaboratorFilterModel filter)
+        public ActionResult EmployeesList(EmployeeFilterModel filter)
         {
             filter = ProcessFilter(filter);
 
-            var сollaboratorsЬodel = new CollaboratorModel();//репо
+            var сollaboratorsЬodel = new EmployeeModel();//репо
 
-            сollaboratorsЬodel.LogsList = _repository.GetCollaborators();
+            сollaboratorsЬodel.EmployeesList = _repository.GetEmployees();
 
-            filter.CurrentPagingInfo.TotalItems = сollaboratorsЬodel.CollaboratorsCount;
+            filter.CurrentPagingInfo.TotalItems = сollaboratorsЬodel.EmployeesCount;
 
-            return View(new CollaboratorViewModel()
+            return View(new EmployeeViewModel()
             {
                 Filter = filter,
-                CollaboratorsModel = сollaboratorsЬodel
+                EmployeesModel = сollaboratorsЬodel
             });
         }
 
         [AcceptVerbs(HttpVerbs.Get)]
-        public ActionResult CollaboratorDetails(int? id)
+        public ActionResult EmployeeDetails(int? id)
         {
-            return View(new CollaboratorDetailsModel());
+            return View(new EmployeeDetailsModel());
         }
 
-        private CollaboratorFilterModel ProcessFilter(CollaboratorFilterModel filter) //в базовый
+        private EmployeeFilterModel ProcessFilter(EmployeeFilterModel filter) //в базовый
         {
             if (filter.FilterAction != null)
             {
@@ -54,7 +54,7 @@ namespace ABMCloud
                 {
                     case "applyFilter":
                         {
-                            var cFilter = new CollaboratorFilterModel();
+                            var cFilter = new EmployeeFilterModel();
                             filter.CurrentPagingInfo.Page = 1;
                             cFilter.CopyFrom(filter);
                             Session[_filterCode] = cFilter;
@@ -62,11 +62,11 @@ namespace ABMCloud
                         }
                     case "applyPage":
                         {
-                            var fil = new CollaboratorFilterModel();
+                            var fil = new EmployeeFilterModel();
                             fil.CopyFrom(filter);
                             if (Session[_filterCode] != null)
                             {
-                                fil = Session[_filterCode] as CollaboratorFilterModel;
+                                fil = Session[_filterCode] as EmployeeFilterModel;
                                 if (fil != null) fil.CurrentPagingInfo = filter.CurrentPagingInfo;
                             }
                             Session[_filterCode] = fil;
@@ -84,7 +84,7 @@ namespace ABMCloud
             {
                 if (HttpContextFactory.Current.Session != null && HttpContextFactory.Current.Session[_filterCode] != null)
                 {
-                    filter = HttpContextFactory.Current.Session[_filterCode] as CollaboratorFilterModel;
+                    filter = HttpContextFactory.Current.Session[_filterCode] as EmployeeFilterModel;
                 }
             }
 
