@@ -1,10 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Web;
 using System.Web.Mvc;
+using ABMCloud.Models;
+using ABMCloud.Helpers;
+using ABMCloud.Dao;
 
-namespace ABMCloud.Controllers
+namespace ABMCloud
 {
     public static class Alerts
     {
@@ -52,6 +52,54 @@ namespace ABMCloud.Controllers
             TempData.Clear();
             if (!string.IsNullOrEmpty(resCode)) message += " : " + resCode + " - " + errormess;
             TempData.Add(Alerts.ERROR, message);
+        }
+
+        protected TFilter ProcessFilter<TFilter>(TFilter filter) where TFilter : FilterModel, new()
+        {
+
+            var filterCode = typeof(TFilter).Name;
+
+            if (filter.FilterAction != null)
+            {
+                switch (filter.FilterAction)
+                {
+                    case "applyFilter":
+                        {
+                            var cFilter = new TFilter();
+                            filter.CurrentPagingInfo.Page = 1;
+                            cFilter.CopyFrom(filter);
+                            Session[filterCode] = cFilter;
+                            break;
+                        }
+                    case "applyPage":
+                        {
+                            var fil = new TFilter();
+                            fil.CopyFrom(filter);
+                            if (Session[filterCode] != null)
+                            {
+                                fil = Session[filterCode] as TFilter; ;
+                                if (fil != null) fil.CurrentPagingInfo = filter.CurrentPagingInfo;
+                            }
+                            Session[filterCode] = fil;
+                            return fil;
+                        }
+                    case "resetFilter":
+                        {
+                            if (HttpContextFactory.Current.Session != null)
+                                HttpContextFactory.Current.Session[filterCode] = null;
+                            break;
+                        }
+                }
+            }
+            else
+            {
+                if (HttpContextFactory.Current.Session != null && HttpContextFactory.Current.Session[filterCode] != null)
+                {
+                    filter = HttpContextFactory.Current.Session[filterCode] as TFilter;
+                }
+            }
+
+            return filter;
         }
     }
 }

@@ -7,9 +7,9 @@
     <table class="table table-hover">
         <thead>
             <tr>
-                <th>Name</th>
-                <th>Surname</th>
-                <th>Patronymic</th>
+                <th class="col-md-2">Name</th>
+                <th class="col-md-2">Surname</th>
+                <th class="col-md-2">Patronymic</th>
                 <th>Last date of vacation</th>
                 <th>Actions</th>
             </tr>
@@ -18,7 +18,7 @@
             @foreach (var item in @Model.EmployeesList)
             {
             <tr class="clickable-row" href="@Url.Action("CollaboratorDetails", "Home")">
-                <td>@item.Name</td>
+                <td class="col-md-5">@item.Name</td>
                 <td>@item.Surname</td>
                 <td>@item.Patronymic</td>
                 <td>@item.Birthday</td>
@@ -38,7 +38,8 @@
 
 <div class="container">
     <button type="button" class="btn btn-success"  onclick="window.location.href = '@Url.Action("CollaboratorDetails", "Home")'">
-        Add <span class="glyphicon glyphicon-plus"></span>
+        Add 
+        <span class="glyphicon glyphicon-plus"></span>
     </button>
 </div>
 

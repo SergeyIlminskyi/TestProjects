@@ -15,7 +15,15 @@ namespace ABMCloud.Models
         public PagingInfo CurrentPagingInfo { get; set; }
         public string FilterAction { get; set; }
 
-        public abstract void CopyFrom(EmployeeFilterModel copy);
+        public abstract void CopyFrom(FilterModel copy);
+
+
+        protected void CopyBase(FilterModel copy)
+        {
+            CurrentPagingInfo.Page = copy.CurrentPagingInfo.Page;
+            CurrentPagingInfo.ItemsPerPage = copy.CurrentPagingInfo.ItemsPerPage;
+            CurrentPagingInfo.TotalItems = copy.CurrentPagingInfo.TotalItems;
+        }
 
     }
 }

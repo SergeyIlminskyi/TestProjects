@@ -8,14 +8,24 @@ namespace ABMCloud.Models
     public class EmployeeFilterModel : FilterModel
     {
         public string Name { get; set; }
+        public string Surname { get; set; }
+        public string Patronymic { get; set; }
 
-        public override void CopyFrom(EmployeeFilterModel copy)
+
+        public DateTime? FromDate { get; set; }
+        public DateTime? ToDate { get; set; }
+
+
+        public override void CopyFrom(FilterModel copy)
         {
-            Name = copy.Name;
+            Name = ((EmployeeFilterModel)copy).Name;
+            Surname = ((EmployeeFilterModel)copy).Surname;
+            Patronymic = ((EmployeeFilterModel)copy).Patronymic;
 
-            CurrentPagingInfo.Page = copy.CurrentPagingInfo.Page;
-            CurrentPagingInfo.ItemsPerPage = copy.CurrentPagingInfo.ItemsPerPage;
-            CurrentPagingInfo.TotalItems = copy.CurrentPagingInfo.TotalItems;
+            FromDate = ((EmployeeFilterModel)copy).FromDate;
+            ToDate = ((EmployeeFilterModel)copy).ToDate;
+
+            base.CopyBase(copy);
         }
     }
 }

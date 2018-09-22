@@ -14,14 +14,10 @@
 
 <div class="container body-content">
     <h1>@ViewBag.Title</h1>
-    
-    <p>To select employees, use the filter</p>
 
-    @using (Html.BeginForm("CrossSalesList", "CrossSale", FormMethod.Post, new { id = "crossSaleForm" }))
+    @using (Html.BeginForm("EmployeesList", "Home", FormMethod.Post, new { id = "crossSaleForm" }))
     {
         @Html.Partial("EmployeesPartialView/Filter", Model.Filter)
-
-        @Html.Partial("Pagination", Model.Filter.CurrentPagingInfo)
 
         @Html.Partial("EmployeesPartialView/EmployeesTable", Model.EmployeesModel)
 
