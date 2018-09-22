@@ -4,8 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Autofac;
-using Autofac.Core;
 using Autofac.Integration.Mvc;
+using ABMCloud.Dao;
 
 namespace ABMCloud
 {
@@ -18,7 +18,7 @@ namespace ABMCloud
             builder.RegisterControllers(typeof(Global).Assembly);
 
 
-            //builder.RegisterType<MatrixActions>().As<IMatrixActions>().SingleInstance();
+            builder.RegisterType<Repository>().As<IRepository>().SingleInstance();
             //builder.RegisterType<MatrixModel>().As<IMatrixModel>().SingleInstance();
 
             var container = builder.Build();

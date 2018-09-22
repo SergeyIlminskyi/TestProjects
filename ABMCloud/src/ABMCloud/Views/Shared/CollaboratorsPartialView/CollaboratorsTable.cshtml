@@ -1,12 +1,45 @@
 ﻿
 @model ABMCloud.Models.CollaboratorModel
 
-@foreach (var item in @Model.LogsList)
-{
-    <div class="flx-row list__row">
 
-        <div class="columns options-col">
-            @Html.ActionLink("Изменить", "CrossSaleDetails", "CrossSale", new { id = item.Id }, null)
-        </div>
-    </div>
-}
+
+<div class="container">
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Surname</th>
+                <th>Patronymic</th>
+                <th>Last date of vacation</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in @Model.LogsList)
+            {
+            <tr class="clickable-row" href="@Url.Action("CollaboratorDetails", "Home")">
+                <td>@item.Name</td>
+                <td>@item.Surname</td>
+                <td>@item.Patronymic</td>
+                <td>@item.Birthday</td>
+                <td>
+                    <button type="button" class="btn btn-warning btn-xs" onclick="window.location.href = '@Url.Action("CollaboratorDetails", "Home", new { id = item.Id })'">
+                        <span class="glyphicon glyphicon-pencil"></span>
+                    </button>
+                    <button type="button" class="btn btn-danger btn-xs" onclick="window.location.href = '@Url.Action("CollaboratorDetails", "Home", new { id = item.Id })'">
+                        <span class="glyphicon glyphicon-remove"></span>
+                    </button>
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<div class="container">
+    <button type="button" class="btn btn-success"  onclick="window.location.href = '@Url.Action("CollaboratorDetails", "Home")'">
+        Add <span class="glyphicon glyphicon-plus"></span>
+    </button>
+</div>
+
+

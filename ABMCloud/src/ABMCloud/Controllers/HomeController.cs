@@ -2,12 +2,20 @@
 using System.Web.Mvc;
 using ABMCloud.Models;
 using ABMCloud.Helpers;
+using ABMCloud.Dao;
 
 namespace ABMCloud
 {
     public class HomeController : Controller
     {
         private const string _filterCode = "CollaboratorFilter";
+        private readonly IRepository _repository;
+
+        public HomeController(IRepository repository)
+        {
+            _repository = repository;
+        }
+
 
         [AcceptVerbs(HttpVerbs.Get)]
         public ActionResult Index()
@@ -21,6 +29,8 @@ namespace ABMCloud
 
             var сollaboratorsЬodel = new CollaboratorModel();//репо
 
+            сollaboratorsЬodel.LogsList = _repository.GetCollaborators();
+
             filter.CurrentPagingInfo.TotalItems = сollaboratorsЬodel.CollaboratorsCount;
 
             return View(new CollaboratorViewModel()
@@ -31,7 +41,7 @@ namespace ABMCloud
         }
 
         [AcceptVerbs(HttpVerbs.Get)]
-        public ActionResult CollaboratorDetails(int id)
+        public ActionResult CollaboratorDetails(int? id)
         {
             return View(new CollaboratorDetailsModel());
         }

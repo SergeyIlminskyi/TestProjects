@@ -4,7 +4,7 @@
 
 <div class="filters">
     <div class="flx-row">
-        <div class="columns small-9 small-uncollapse">
+        @*<div class="columns small-9 small-uncollapse">
             <div class="flx-row">
                 <div class="columns small-3">
                     @Html.EnumDropDownListFor(model => model.Status, "---Статус рассылки---", new { @class = "u-select" })
@@ -47,7 +47,7 @@
                     @Html.ValidationMessageFor(model => model.StartDateFrom)
                 </div>
             </div>
-        </div>
+        </div>*@
         <div class="columns small-3 text-align-right">
             <button class="u-btn secondary" type="button" onclick="window.location.href = '@Url.Action("CrossSalesList", "CrossSale", new { FilterAction = "resetFilter" })'">Очистить</button>
             <button name="FilterAction" class="u-btn primary" type="submit" value="applyFilter" id="submitButton">Применить</button>
