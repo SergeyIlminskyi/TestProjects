@@ -1,7 +1,4 @@
 ﻿using System;
-
-using System.Linq;
-using System.Collections.Generic;
 using NUnit.Framework;
 using ABMCloud.Entites;
 using ABMCloud.Dao;

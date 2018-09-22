@@ -15,7 +15,7 @@
 <div class="container body-content">
     <h1>@ViewBag.Title</h1>
 
-    @using (Html.BeginForm("EmployeesList", "Home", FormMethod.Post, new { id = "crossSaleForm" }))
+    @using (Html.BeginForm("EmployeesList", "Employee", FormMethod.Post, new { id = "crossSaleForm" }))
     {
         @Html.Partial("EmployeesPartialView/Filter", Model.Filter)
 
