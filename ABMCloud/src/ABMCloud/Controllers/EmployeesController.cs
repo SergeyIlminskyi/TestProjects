@@ -32,19 +32,28 @@ namespace ABMCloud.Controllers
         }
 
         [AcceptVerbs(HttpVerbs.Get)]
-        public ActionResult EmployeeDetails(int? id)
+        public ActionResult EmployeeDetails(int id)
         {
             return View(new EmployeeDetailsModel());
         }
 
         [AcceptVerbs(HttpVerbs.Get)]
-        public ActionResult EditEmployee(int? id)
+        public ActionResult AddOrEditEmployee(int? id)
         {
-            return View(new EmployeeDetailsModel());
+            return View(new EmployeeDetailsModel()
+            {
+                EmployeeDetails = _repository.GetEmployeeDetailsById((int)id)
+            });
+        }
+
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult AddOrEditEmployee(EmployeeDetailsModel model)
+        {
+            return View(model);
         }
 
         [AcceptVerbs(HttpVerbs.Get)]
-        public ActionResult RemoveEmployee(int? id)
+        public ActionResult RemoveEmployee(int id)
         {
             return View(new EmployeeDetailsModel());
         }

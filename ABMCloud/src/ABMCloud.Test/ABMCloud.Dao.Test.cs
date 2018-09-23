@@ -26,8 +26,79 @@ namespace ABMCloud.Test
         [Test, Order(2)]
         public void GetEmployeesTest()
         {
-            var collaborators = _repository.GetEmployees();
-            Assert.IsTrue(collaborators.Count > 1);
+            var item1 = new EmployeeInfo()
+            {
+                Surname = "Poberezets",
+                Name = "Vladislav",
+                Patronymic = "Olegovich",
+                Birthday = new DateTime(1990, 12, 2) };
+            var item2 = new EmployeeInfo()
+            {
+                Surname = "Antonov",
+                Name = "Dmitriy",
+                Patronymic = "Valentinovich",
+                Birthday = new DateTime(1984, 7, 21)
+            };
+
+            _repository.AddEmployee(item1);
+            _repository.AddEmployee(item2);
+            var employees = _repository.GetEmployees();
+            Assert.IsTrue(employees.Count > 1);
+        }
+
+        [Test, Order(3)]
+        public void GetEmployeeDetailsTest()
+        {
+            var item = new EmployeeInfo()
+            {
+                Surname = "Petrov",
+                Name = "Stas",
+                Patronymic = "Valentinovich",
+                Birthday = new DateTime(1985, 6, 22)
+            };
+
+            var id = _repository.AddEmployee(item);
+            var employee = _repository.GetEmployeeDetailsById(id);
+
+            Assert.IsTrue(employee.Id > 0);
+        }
+
+        [Test, Order(4)]
+        public void AddVacationTest()
+        {
+            var e1 = new EmployeeInfo()
+            {
+                Surname = "Kot",
+                Name = "Danil",
+                Patronymic = "Ivanovich",
+                Birthday = new DateTime(1978, 6, 25)
+            };
+            var e2 = new EmployeeInfo()
+            {
+                Surname = "Honcharov",
+                Name = "Stanislav", 
+                Patronymic = "Sergeevich",
+                Birthday = new DateTime(1989, 2, 15)
+            };
+            var id1 = _repository.AddEmployee(e1);
+            var id2 = _repository.AddEmployee(e2);
+
+            var vacation = new EmployeesVacationInfo()
+            {
+                Substitutional = _repository.GetEmployeeDetailsById(id1),
+                Vacationist = _repository.GetEmployeeDetailsById(id2),
+                StartDate = new DateTime(2016, 2, 15),
+                EndDate = new DateTime(2016, 3, 15),
+            };
+
+            Assert.IsTrue(_repository.AddVacation(vacation) > 0);
+        }
+
+
+        [Test, Order(4)]
+        public void Test()
+        {
+             _repository.Test();
         }
     }
 }

@@ -4,12 +4,13 @@ using System.Linq;
 using System.Text;
 using ABMCloud.Entites;
 using ABMCloud.Dao.Context;
+using ABMCloud.Dao.Entitis;
 
 namespace ABMCloud.Dao
 {
     public class Repository : IRepository
     {
-        public long AddEmployee(EmployeeInfo collaborator)
+        public int AddEmployee(EmployeeInfo collaborator)
         {
             using (EmployeeContext db = new EmployeeContext())
             {
@@ -32,23 +33,145 @@ namespace ABMCloud.Dao
         {
             using (EmployeeContext db = new EmployeeContext())
             {
-                var collaborators = new List<EmployeeInfo>();
-
-                foreach(var collaborator in db.Employees.ToList())
+                var employees = new List<EmployeeInfo>();
+                var tempEmployees = db.Employees.ToList();
+                foreach (var employee in tempEmployees)
                 {
+                    DateTime? lastDate = null;
+
+                    if (db.EmployeesVacations.Any(x => x.Vacationist.Id == employee.Id))
+                        lastDate = db.EmployeesVacations.Where(x => x.Vacationist.Id == employee.Id).Max(x => x.EndDate);
+
                     var item = new EmployeeInfo()
                     {
-                        Id = collaborator.Id,
-                        Name = collaborator.Name,
-                        Surname = collaborator.Surname,
-                        Patronymic = collaborator.Patronymic,
-                        Birthday = collaborator.Birthday,
-                        LastVacationDate = DateTime.Now
+                        Id = employee.Id,
+                        Name = employee.Name,
+                        Surname = employee.Surname,
+                        Patronymic = employee.Patronymic,
+                        Birthday = employee.Birthday,
+                        LastVacationDate = lastDate
                     };
 
-                    collaborators.Add(item);
+                    employees.Add(item);
                 }
-                return collaborators;
+                return employees;
+            }
+        }
+
+        public EmployeeInfo GetEmployeeDetailsById(int id)
+        {
+            using (EmployeeContext db = new EmployeeContext())
+            {
+                var employee = db.Employees.FirstOrDefault(x => x.Id == id);
+
+                DateTime? lastDate = null;
+
+                if (db.EmployeesVacations.Any(x => x.Vacationist.Id == id))
+                    lastDate = db.EmployeesVacations.Where(x => x.Vacationist.Id == employee.Id).Max(x => x.EndDate);
+
+                return  new EmployeeInfo()
+                {
+                    Id = employee.Id,
+                    Name = employee.Name,
+                    Surname = employee.Surname,
+                    Patronymic = employee.Patronymic,
+                    Birthday = employee.Birthday,
+                    LastVacationDate = lastDate
+                };      
+            }
+        }
+        public int AddVacation(EmployeesVacationInfo vacation)
+        {
+            using (EmployeeContext db = new EmployeeContext())
+            {
+                var item = db.EmployeesVacations.Add(new EmployeesVacation()
+                {
+                    Substitutional = db.Employees.FirstOrDefault(x => x.Id == vacation.Vacationist.Id),
+                    Vacationist = db.Employees.FirstOrDefault(x => x.Id == vacation.Substitutional.Id),
+                    StartDate = vacation.StartDate,
+                    EndDate = vacation.EndDate,
+                    CreatedOn = DateTime.Now
+                });
+
+                db.SaveChanges();
+
+                return item.Id;
+            }
+                
+        }
+        public List<EmployeesVacationInfo> GetVacationsByVacationistId(int id)
+        {
+            using (EmployeeContext db = new EmployeeContext())
+            {
+                var vacationsList = new List<EmployeesVacationInfo>();
+
+                foreach (var vacation in db.EmployeesVacations.Where(x => x.Vacationist.Id == id))
+                {
+                    var item = new EmployeesVacationInfo()
+                    {
+                        Id = vacation.Id,
+                        StartDate = vacation.StartDate,
+                        EndDate = vacation.EndDate,
+                        Substitutional = new EmployeeInfo()
+                        {
+                            Id = vacation.Substitutional.Id,
+                            Name = vacation.Substitutional.Name,
+                            Surname = vacation.Substitutional.Surname,
+                            Patronymic = vacation.Substitutional.Patronymic,
+                            Birthday = vacation.Substitutional.Birthday
+                        }
+
+                    };
+                    vacationsList.Add(item);
+                }
+
+                return vacationsList;
+            }
+        }
+        public void Test()
+        {
+            using (EmployeeContext db = new EmployeeContext())
+            {
+
+                var e1 = new Employee()
+                {
+                    Id = 1,
+                    Name = "Danil",
+                    Surname = "Petrov",
+                    Patronymic = "Ivanovich",
+                    Birthday = new DateTime(1978, 6, 25)
+                };
+                var e2 = new Employee()
+                {
+                    Id = 2,
+                    Name = "Stanislav",
+                    Surname = "Honcharov",
+                    Patronymic = "Sergeevich",
+                    Birthday = new DateTime(1989, 2, 15)
+                };
+                var ee1 = db.Employees.FirstOrDefault(x => x.Id == 1);
+                var ee2 = db.Employees.FirstOrDefault(x => x.Id == 2);
+
+
+                var v1 = new EmployeesVacation()
+                {
+                    Substitutional = e1,
+                    Vacationist = e2,
+                    StartDate = new DateTime(2018, 2, 15),
+                    EndDate = new DateTime(2018, 3, 15),
+                };
+                var v2 = new EmployeesVacation()
+                {
+                    Substitutional = e2,
+                    Vacationist = e1,
+                    StartDate = new DateTime(2018, 3, 15),
+                    EndDate = new DateTime(2018, 4, 15),
+                };
+
+                
+                db.EmployeesVacations.Add(v1);
+                db.EmployeesVacations.Add(v2);
+                db.SaveChanges();
             }
         }
     }

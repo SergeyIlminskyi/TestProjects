@@ -9,8 +9,17 @@ namespace ABMCloud.Dao
 {
     public interface IRepository
     {
-        long AddEmployee(EmployeeInfo collaborator);
+        int AddEmployee(EmployeeInfo collaborator);
 
         List<EmployeeInfo> GetEmployees();
+
+        EmployeeInfo GetEmployeeDetailsById(int id);
+
+        int AddVacation(EmployeesVacationInfo vacation);
+
+        List<EmployeesVacationInfo> GetVacationsByVacationistId(int id);
+
+
+        void Test();
     }
 }

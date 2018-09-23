@@ -166,6 +166,7 @@
     <Content Include="Views\Shared\EmployeesPartialView\EmployeesTable.cshtml" />
     <Content Include="Views\Shared\EmployeesPartialView\Filter.cshtml" />
     <Content Include="Views\Employee\EditEmployee.cshtml" />
+    <Content Include="Views\Employee\AddOrEditEmployee.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

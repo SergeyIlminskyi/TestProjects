@@ -10,5 +10,7 @@ namespace ABMCloud.Dao.Context
         public EmployeeContext() : base("DbConnection") { }
 
         public DbSet<Employee> Employees { get; set; }
+
+        public DbSet<EmployeesVacation> EmployeesVacations { get; set; }
     }
 }

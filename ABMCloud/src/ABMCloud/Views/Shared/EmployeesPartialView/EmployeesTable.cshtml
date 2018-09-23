@@ -7,10 +7,10 @@
     <table class="table table-hover">
         <thead>
             <tr>
-                <th class="col-md-2">Name</th>
                 <th class="col-md-2">Surname</th>
+                <th class="col-md-2">Name</th>
                 <th class="col-md-2">Patronymic</th>
-                <th class="col-md-5">Last date of vacation</th>
+                <th class="col-md-4">Last date of vacation</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -18,16 +18,19 @@
             @foreach (var item in @Model.EmployeesList)
             {
             <tr class="clickable-row">
-                <td class="col-md-2">@item.Name</td>
                 <td class="col-md-2">@item.Surname</td>
+                <td class="col-md-2">@item.Name</td>
                 <td class="col-md-2">@item.Patronymic</td>
-                <td class="col-md-5">@item.Birthday</td>
+                <td class="col-md-4">@item.LastVacationDate</td>
                 <td>
-                    <button type="button" class="btn btn-warning btn-xs" onclick="window.location.href = '@Url.Action("EditEmployee", "Employee", new { id = item.Id })'">
+                    <button type="button" class="btn btn-info btn-xs" onclick="window.location.href = '@Url.Action("EmployeeDetails", "Employee", new { id = item.Id })'">
+                        <span class="glyphicon glyphicon-info-sign"></span>
+                    </button>
+                    <button type="button" class="btn btn-warning btn-xs" onclick="window.location.href = '@Url.Action("AddOrEditEmployee", "Employee", new { id = item.Id })'">
                         <span class="glyphicon glyphicon-pencil"></span>
                     </button>
                     <button type="button" class="btn btn-danger btn-xs" onclick="window.location.href = '@Url.Action("RemoveEmployee", "Employee", new { id = item.Id })'">
-                        <span class="glyphicon glyphicon-remove"></span>
+                        <span class="glyphicon glyphicon-trash"></span>
                     </button>
                 </td>
             </tr>
@@ -37,7 +40,7 @@
 </div>
 
 <div class="container">
-    <button type="button" class="btn btn-success"  onclick="window.location.href = '@Url.Action("EmployeeDetails", "Employee")'">
+    <button type="button" class="btn btn-success"  onclick="window.location.href = '@Url.Action("AddOrEditEmployee", "Employee")'">
         Add 
         <span class="glyphicon glyphicon-plus"></span>
     </button>

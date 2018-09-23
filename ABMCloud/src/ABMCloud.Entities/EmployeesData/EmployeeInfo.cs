@@ -18,6 +18,6 @@ namespace ABMCloud.Entites
 
         public DateTime Birthday { get; set; }
 
-        public DateTime LastVacationDate { get; set; }
+        public DateTime? LastVacationDate { get; set; }
     }
 }

@@ -12,7 +12,7 @@ namespace ABMCloud.Entites
 
         public EmployeeInfo Vacationist { get; set; }
 
-        public EmployeeInfo Substituting { get; set; }
+        public EmployeeInfo Substitutional { get; set; }
 
         public DateTime StartDate { get; set; }
 

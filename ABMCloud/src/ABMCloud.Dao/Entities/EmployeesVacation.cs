@@ -8,11 +8,11 @@ namespace ABMCloud.Dao.Entitis
 {
     class EmployeesVacation : Entity
     {
-        public long Id { get; set; }
+        public int Id { get; set; }
 
-        public long VacationistId{ get; set; }
+        public Employee Vacationist { get; set; }
 
-        public long SubstitutingId { get; set; }
+        public Employee Substitutional { get; set; }
 
         public DateTime StartDate { get; set; }
 
