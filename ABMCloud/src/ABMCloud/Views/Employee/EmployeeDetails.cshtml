@@ -11,31 +11,64 @@
 
 <div class="container body-content">
     <h1>@ViewBag.Title</h1>
-    <p>To select employees, use the filter</p>
-    <form class="form-horizontal">
+    <div class="form-horizontal">
         <div class="form-group">
-            <label class="control-label col-sm-2" for="email">Email:</label>
+            <label class="control-label col-sm-2">Name:</label>
             <div class="col-sm-10">
-                <input type="email" class="form-control" id="email" placeholder="Enter email">
+                @Html.EditorFor(model => model.EmployeeDetails.Name, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
             </div>
         </div>
         <div class="form-group">
-            <label class="control-label col-sm-2" for="pwd">Password:</label>
+            <label class="control-label col-sm-2">Surname:</label>
             <div class="col-sm-10">
-                <input type="password" class="form-control" id="pwd" placeholder="Enter password">
+                @Html.EditorFor(model => model.EmployeeDetails.Surname, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
             </div>
         </div>
+
         <div class="form-group">
-            <div class="col-sm-offset-2 col-sm-10">
-                <div class="checkbox">
-                    <label><input type="checkbox"> Remember me</label>
-                </div>
+            <label class="control-label col-sm-2">Patronymic:</label>
+            <div class="col-sm-10">
+                @Html.EditorFor(model => model.EmployeeDetails.Patronymic, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
             </div>
         </div>
+
         <div class="form-group">
-            <div class="col-sm-offset-2 col-sm-10">
-                <button type="submit" class="btn btn-default">Submit</button>
+            <label class="control-label col-sm-2">Birthday:</label>
+            <div class="col-sm-10">
+                @Html.EditorFor(model => model.EmployeeDetails.Birthday, new { htmlAttributes = new { @class = "form-control w100", @readonly = "readonly" } })
             </div>
         </div>
-    </form>
+
+        <div class="form-group">
+            <label class="control-label col-sm-2">Last date of vacation:</label>
+            <div class="col-sm-10">
+                @Html.EditorFor(model => model.EmployeeDetails.LastVacationDate, new { htmlAttributes = new { @class = "form-control w100", @readonly = "readonly" } })
+            </div>
+        </div>
+
+        @using (Ajax.BeginForm("VacationsByEmploee", "Vacation", new AjaxOptions() { HttpMethod = "Post", UpdateTargetId = "vacations" }, new { @class = "form-group" }))
+        {
+            @Html.HiddenFor(model => model.EmployeeDetails.Id)
+            <div id="vacations"></div>
+
+            <button class="btn btn-warning" type="button" onclick="window.location.href = '@Url.Action("VacationsByEmploee", "Employee", new { FilterAction = "resetFilter" })'">
+                Reset
+                <span class="glyphicon glyphicon-remove"></span>
+            </button>
+            <button name="FilterAction" class="btn btn-success" type="submit" value="applyFilter" id="submitButton">
+                Confirm
+                <span class="glyphicon glyphicon-ok"></span>
+            </button>
+
+        }
+
+
+
+
+
+        <button class="btn btn-info" type="button" onclick="window.location.href = '@Url.Action("EmployeesList", "Employee")'">
+            Back
+            <span class="glyphicon glyphicon-arrow-left"></span>
+        </button>
+    </div>
 </div>

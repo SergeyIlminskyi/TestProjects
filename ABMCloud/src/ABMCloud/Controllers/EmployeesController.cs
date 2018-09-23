@@ -34,7 +34,10 @@ namespace ABMCloud.Controllers
         [AcceptVerbs(HttpVerbs.Get)]
         public ActionResult EmployeeDetails(int id)
         {
-            return View(new EmployeeDetailsModel());
+            return View(new EmployeeDetailsModel()
+            {
+                EmployeeDetails = _repository.GetEmployeeDetailsById((int)id)
+            });
         }
 
         [AcceptVerbs(HttpVerbs.Get)]
@@ -56,6 +59,23 @@ namespace ABMCloud.Controllers
         public ActionResult RemoveEmployee(int id)
         {
             return View(new EmployeeDetailsModel());
+        }
+
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult VacationsByEmploee(EmployeeDetailsModel model, VacationFilterModel filter)
+        {
+            filter = ProcessFilter<VacationFilterModel>(filter);
+
+            var сollaboratorsЬodel = new VacationModel();//репо
+            сollaboratorsЬodel.VacationsList = _repository.GetVacationsByVacationistId(model.EmployeeDetails.Id);
+
+            filter.CurrentPagingInfo.TotalItems = 50;
+
+            return PartialView(new VacationViewModel()
+            {
+                Filter = filter,
+                VacationsModel = сollaboratorsЬodel
+            });
         }
     }
 }

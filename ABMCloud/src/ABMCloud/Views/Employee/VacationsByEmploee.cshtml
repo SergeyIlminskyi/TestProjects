@@ -1,0 +1,31 @@
+﻿@model ABMCloud.Models.VacationViewModel
+
+
+<div class="container">
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th class="col-md-2">Substitutional S.N.P</th>
+                <th class="col-md-2">Start Date</th>
+                <th class="col-md-2">End date</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in @Model.VacationsModel.VacationsList)
+            {
+                <tr class="clickable-row">
+                    <td class="col-md-2">@item.Substitutional.Surname @item.Substitutional.Name @item.Substitutional.Patronymic</td>
+                    <td class="col-md-2">@item.StartDate</td>
+                    <td class="col-md-2">@item.EndDate</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<div class="container">
+    <button type="button" class="btn btn-success" onclick="window.location.href = '@Url.Action("AddOrEditEmployee", "Employee")'">
+        Add
+        <span class="glyphicon glyphicon-plus"></span>
+    </button>
+</div>

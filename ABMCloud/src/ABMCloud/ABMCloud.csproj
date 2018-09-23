@@ -134,6 +134,7 @@
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\EmployeesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\VacationController.cs" />
     <Compile Include="Filters\HandleErrorFilter.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -142,12 +143,15 @@
     <Compile Include="Helpers\ListCountPager.cs" />
     <Compile Include="Helpers\UrlHelperExtension.cs" />
     <Compile Include="HtmlHelpers\PagingHalpers.cs" />
-    <Compile Include="Models\Employees\EmployeeDetailsModel.cs" />
-    <Compile Include="Models\Employees\EmployeeFilterModel.cs" />
-    <Compile Include="Models\Employees\EmployeeModel.cs" />
-    <Compile Include="Models\Employees\EmployeeViewModel.cs" />
+    <Compile Include="Models\Employee\EmployeeDetailsModel.cs" />
+    <Compile Include="Models\Employee\EmployeeFilterModel.cs" />
+    <Compile Include="Models\Employee\EmployeeModel.cs" />
+    <Compile Include="Models\Employee\EmployeeViewModel.cs" />
     <Compile Include="Models\FilterModel.cs" />
     <Compile Include="Models\PagingInfo.cs" />
+    <Compile Include="Models\Vacation\VacationFilterModel.cs" />
+    <Compile Include="Models\Vacation\VacationModel.cs" />
+    <Compile Include="Models\Vacation\VacationViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -167,6 +171,8 @@
     <Content Include="Views\Shared\EmployeesPartialView\Filter.cshtml" />
     <Content Include="Views\Employee\EditEmployee.cshtml" />
     <Content Include="Views\Employee\AddOrEditEmployee.cshtml" />
+    <Content Include="Views\Vacation\VacationsByEmploee.cshtml" />
+    <Content Include="Views\Employee\VacationsByEmploee.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

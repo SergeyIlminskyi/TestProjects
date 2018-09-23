@@ -114,11 +114,11 @@ namespace ABMCloud.Dao
                         EndDate = vacation.EndDate,
                         Substitutional = new EmployeeInfo()
                         {
-                            Id = vacation.Substitutional.Id,
-                            Name = vacation.Substitutional.Name,
-                            Surname = vacation.Substitutional.Surname,
-                            Patronymic = vacation.Substitutional.Patronymic,
-                            Birthday = vacation.Substitutional.Birthday
+                            Id = vacation.Substitutional?.Id ?? 0,
+                            Name = vacation.Substitutional?.Name,
+                            Surname = vacation.Substitutional?.Surname,
+                            Patronymic = vacation.Substitutional?.Patronymic,
+                            Birthday = vacation.Substitutional?.Birthday ?? new DateTime()
                         }
 
                     };
