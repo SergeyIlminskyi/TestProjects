@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Data.Entity;
 using System.Text;
 using ABMCloud.Entites;
 using ABMCloud.Dao.Context;
@@ -105,7 +106,7 @@ namespace ABMCloud.Dao
             {
                 var vacationsList = new List<EmployeesVacationInfo>();
 
-                foreach (var vacation in db.EmployeesVacations.Where(x => x.Vacationist.Id == id))
+                foreach (var vacation in db.EmployeesVacations.Include(v => v.Substitutional).Where(x => x.Vacationist.Id == id))
                 {
                     var item = new EmployeesVacationInfo()
                     {
@@ -114,11 +115,11 @@ namespace ABMCloud.Dao
                         EndDate = vacation.EndDate,
                         Substitutional = new EmployeeInfo()
                         {
-                            Id = vacation.Substitutional?.Id ?? 0,
-                            Name = vacation.Substitutional?.Name,
-                            Surname = vacation.Substitutional?.Surname,
-                            Patronymic = vacation.Substitutional?.Patronymic,
-                            Birthday = vacation.Substitutional?.Birthday ?? new DateTime()
+                            Id = vacation.Substitutional.Id,
+                            Name = vacation.Substitutional.Name,
+                            Surname = vacation.Substitutional.Surname,
+                            Patronymic = vacation.Substitutional.Patronymic,
+                            Birthday = vacation.Substitutional.Birthday
                         }
 
                     };
