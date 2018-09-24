@@ -1,5 +1,5 @@
 ﻿using ABMCloud.Models;
-using ABMCloud.Entites;
+using ABMCloud.Entities;
 using AutoMapper;
 
 namespace ABMCloud
@@ -12,6 +12,7 @@ namespace ABMCloud
             {
                 cfg.CreateMap<EmployeeInfo, EmployeeDetailsModel>();
                 cfg.CreateMap<EmployeeDetailsModel, EmployeeInfo>();
+                cfg.CreateMap<VacationFilter, VacationFilterModel>();
             });
         }
     }

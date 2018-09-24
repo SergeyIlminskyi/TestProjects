@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ABMCloud.Entites
+namespace ABMCloud.Entities
 {
     public class EmployeeInfo
     {

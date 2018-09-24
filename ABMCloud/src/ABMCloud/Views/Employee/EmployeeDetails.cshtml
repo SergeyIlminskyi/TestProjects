@@ -47,17 +47,12 @@
         @using (Ajax.BeginForm("VacationsByEmploee", "Vacation", new AjaxOptions() { HttpMethod = "Post", UpdateTargetId = "vacations" }, new { @class = "form-group" }))
         {
             @Html.HiddenFor(model => model.Id)
+
+            @Html.Partial("EmployeesPartialView/VacationFilter", Model.VacationFilter)
+
             <div id="vacations"></div>
 
-            <button class="btn btn-warning" type="button" onclick="window.location.href = '@Url.Action("VacationsByEmploee", "Employee", new { FilterAction = "resetFilter" })'">
-                Reset
-                <span class="glyphicon glyphicon-remove"></span>
-            </button>
-            <button name="FilterAction" class="btn btn-success" type="submit" value="applyFilter" id="submitButton">
-                Confirm
-                <span class="glyphicon glyphicon-ok"></span>
-            </button>
-
+            @Html.Partial("Pagination", Model.VacationFilter.CurrentPagingInfo)
         }
 
 

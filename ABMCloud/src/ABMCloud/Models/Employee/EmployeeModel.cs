@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using ABMCloud.Entites;
+using ABMCloud.Entities;
 
 namespace ABMCloud.Models
 {

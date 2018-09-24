@@ -1,6 +1,6 @@
 ﻿using System;
 using NUnit.Framework;
-using ABMCloud.Entites;
+using ABMCloud.Entities;
 using ABMCloud.Dao;
 
 namespace ABMCloud.Test
@@ -83,7 +83,7 @@ namespace ABMCloud.Test
             var id1 = _repository.AddEmployee(e1);
             var id2 = _repository.AddEmployee(e2);
 
-            var vacation = new EmployeesVacationInfo()
+            var vacation = new VacationInfo()
             {
                 Substitutional = _repository.GetEmployeeDetailsById(id1),
                 Vacationist = _repository.GetEmployeeDetailsById(id2),

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
-using ABMCloud.Entites;
+using ABMCloud.Entities;
 
 namespace ABMCloud.Models
 {
@@ -22,5 +22,7 @@ namespace ABMCloud.Models
 
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:d}")]
         public DateTime? LastVacationDate { get; set; }
+
+        public VacationFilterModel VacationFilter { get; set; }
     }
 }

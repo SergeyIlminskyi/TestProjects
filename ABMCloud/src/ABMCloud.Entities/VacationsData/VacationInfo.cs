@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace ABMCloud.Entites
+namespace ABMCloud.Entities
 {
-    public class EmployeesVacationInfo
+    public class VacationInfo
     {
         public long Id { get; set; }
 

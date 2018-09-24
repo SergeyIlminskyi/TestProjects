@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using ABMCloud.Entites;
+using ABMCloud.Entities;
 
 namespace ABMCloud.Dao
 {
@@ -17,9 +17,9 @@ namespace ABMCloud.Dao
 
         EmployeeInfo GetEmployeeDetailsById(int id);
 
-        int AddVacation(EmployeesVacationInfo vacation);
+        int AddVacation(VacationInfo vacation);
 
-        List<EmployeesVacationInfo> GetVacationsByVacationistId(int id);
+        List<VacationInfo> GetVacationsByVacationistId(int id, VacationFilter filter = null);
 
 
         void Test();

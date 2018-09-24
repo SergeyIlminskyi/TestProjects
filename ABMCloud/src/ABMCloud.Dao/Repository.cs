@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Data.Entity;
 using System.Text;
-using ABMCloud.Entites;
+using ABMCloud.Entities;
 using ABMCloud.Dao.Context;
 using ABMCloud.Dao.Entitis;
 
@@ -85,7 +85,7 @@ namespace ABMCloud.Dao
                 };      
             }
         }
-        public int AddVacation(EmployeesVacationInfo vacation)
+        public int AddVacation(VacationInfo vacation)
         {
             using (EmployeeContext db = new EmployeeContext())
             {
@@ -104,15 +104,22 @@ namespace ABMCloud.Dao
             }
                 
         }
-        public List<EmployeesVacationInfo> GetVacationsByVacationistId(int id)
+        public List<VacationInfo> GetVacationsByVacationistId(int id, VacationFilter filter = null)
         {
             using (EmployeeContext db = new EmployeeContext())
             {
-                var vacationsList = new List<EmployeesVacationInfo>();
+                var vacationsList = new List<VacationInfo>();
 
-                foreach (var vacation in db.EmployeesVacations.Include(v => v.Substitutional).Where(x => x.Vacationist.Id == id))
+                foreach (var vacation in db.EmployeesVacations.Include(v => v.Substitutional)
+                    .Where(x => x.Vacationist.Id == id 
+                        && (filter.StartDateFrom.HasValue ? x.StartDate >= filter.StartDateFrom : true)
+                        && (filter.StartDateTo.HasValue ? x.StartDate <= filter.StartDateTo : true)
+                        && (filter.EndDateFrom.HasValue ? x.EndDate >= filter.EndDateFrom : true)
+                        && (filter.EndDateTo.HasValue ? x.EndDate <= filter.EndDateTo : true)
+                ))
+
                 {
-                    var item = new EmployeesVacationInfo()
+                    var item = new VacationInfo()
                     {
                         Id = vacation.Id,
                         StartDate = vacation.StartDate,

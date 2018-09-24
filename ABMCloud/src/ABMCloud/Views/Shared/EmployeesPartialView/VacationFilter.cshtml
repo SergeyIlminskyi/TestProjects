@@ -1,0 +1,52 @@
+﻿
+@model ABMCloud.Models.VacationFilterModel
+
+
+<div class="container">
+    <p>To select vacatioms, use the filter</p>
+    <div class="form-inline">
+        <div class="form-group w425">
+        </div>
+        <div class="form-group w100">
+            @Html.EditorFor(model => model.StartDateFrom, new { htmlAttributes = new { @class = "datepicker form-control", @placeholder = "Start date from", @autocomplete = "off" } })
+        </div>
+        <div class="form-group w60">
+        </div>
+        <div class="form-group w100">
+            @Html.EditorFor(model => model.StartDateTo, new { htmlAttributes = new { @class = "datepicker form-control", @placeholder = "Start date to", @autocomplete = "off" } })
+        </div>
+        <div class="form-group w100">
+        </div>
+        <div class="form-group w100">
+            @Html.EditorFor(model => model.EndDateFrom, new { htmlAttributes = new { @class = "datepicker form-control", @placeholder = "End date from", @autocomplete = "off" } })
+        </div>
+        <div class="form-group w60">
+        </div>
+        <div class="form-group w100 ml20">
+            @Html.EditorFor(model => model.EndDateTo, new { htmlAttributes = new { @class = "datepicker form-control", @placeholder = "End date to", @autocomplete = "off" } })
+        </div>
+        <div class="form-group w120">
+        </div>
+
+
+        <button name="FilterAction" class="btn btn-warning" type="submit" value="resetFilter" id="resetButton">
+            Reset
+            <span class="glyphicon glyphicon-remove"></span>
+        </button>
+        <button name="FilterAction" class="btn btn-success" type="submit" value="applyFilter" id="submitButton">
+            Confirm
+            <span class="glyphicon glyphicon-ok"></span>
+        </button>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        $("#resetButton").on("click", function () {
+            $("#StartDateFrom").val(null);
+            $("#StartDateTo").val(null);
+            $("#EndDateFrom").val(null);
+            $("#EndDateTo").val(null);
+        });
+    });
+</script>

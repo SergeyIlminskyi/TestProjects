@@ -176,10 +176,11 @@
     <Content Include="Views\Employee\EmployeesList.cshtml" />
     <Content Include="Views\Employee\EmployeeDetails.cshtml" />
     <Content Include="Views\Shared\EmployeesPartialView\EmployeesTable.cshtml" />
-    <Content Include="Views\Shared\EmployeesPartialView\Filter.cshtml" />
+    <Content Include="Views\Shared\EmployeesPartialView\EmployeeFilter.cshtml" />
     <Content Include="Views\Employee\AddOrEditEmployee.cshtml" />
     <Content Include="Views\Vacation\VacationsByEmploee.cshtml" />
     <Content Include="Views\Employee\VacationsByEmploee.cshtml" />
+    <Content Include="Views\Shared\EmployeesPartialView\VacationFilter.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
