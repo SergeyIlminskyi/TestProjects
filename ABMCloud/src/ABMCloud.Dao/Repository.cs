@@ -106,6 +106,7 @@ namespace ABMCloud.Dao
         }
         public List<VacationInfo> GetVacationsByVacationistId(int id, VacationFilter filter = null)
         {
+            filter = filter ?? new VacationFilter();
             using (EmployeeContext db = new EmployeeContext())
             {
                 var vacationsList = new List<VacationInfo>();
