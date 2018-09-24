@@ -10,7 +10,6 @@ namespace ABMCloud.Filters
     {
         public void OnException(ExceptionContext exceptionContext)
         {
-
             if (!exceptionContext.ExceptionHandled && exceptionContext.Exception is Exception)
             {
                 exceptionContext.Result = new ViewResult

@@ -31,7 +31,18 @@ namespace ABMCloud.Dao
 
         public void EditEmployee(EmployeeInfo employee)
         {
+            using (EmployeeContext db = new EmployeeContext())
+            {
+                var e = db.Employees.FirstOrDefault(x => x.Id == employee.Id);
 
+                e.Surname = employee.Surname;
+                e.Name = employee.Name;
+                e.Patronymic = employee.Patronymic;
+                e.Birthday = employee.Birthday;
+                e.ModifiedOn = DateTime.Now;
+
+                db.SaveChanges();
+            }
         }
         public List<EmployeeInfo> GetEmployees()
         {
