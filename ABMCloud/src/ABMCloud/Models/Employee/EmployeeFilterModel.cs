@@ -7,13 +7,13 @@ namespace ABMCloud.Models
 {
     public class EmployeeFilterModel : FilterModel
     {
-        public string Name { get; set; }
         public string Surname { get; set; }
+        public string Name { get; set; }
         public string Patronymic { get; set; }
 
 
-        public DateTime? FromDate { get; set; }
-        public DateTime? ToDate { get; set; }
+        public DateTime? DateFrom { get; set; }
+        public DateTime? DateTo { get; set; }
 
 
         public override void CopyFrom(FilterModel copy)
@@ -22,8 +22,8 @@ namespace ABMCloud.Models
             Surname = ((EmployeeFilterModel)copy).Surname;
             Patronymic = ((EmployeeFilterModel)copy).Patronymic;
 
-            FromDate = ((EmployeeFilterModel)copy).FromDate;
-            ToDate = ((EmployeeFilterModel)copy).ToDate;
+            DateFrom = ((EmployeeFilterModel)copy).DateFrom;
+            DateTo = ((EmployeeFilterModel)copy).DateTo;
 
             base.CopyBase(copy);
         }

@@ -44,12 +44,18 @@ namespace ABMCloud.Dao
                 db.SaveChanges();
             }
         }
-        public List<EmployeeInfo> GetEmployees()
+        public List<EmployeeInfo> GetEmployees(EmployeeFilter filter = null)
         {
+            filter = filter ?? new EmployeeFilter();
+
             using (EmployeeContext db = new EmployeeContext())
             {
                 var employees = new List<EmployeeInfo>();
-                var tempEmployees = db.Employees.ToList();
+                var tempEmployees = db.Employees.Where(x => 
+                       (String.IsNullOrEmpty(filter.Surname) ? true : x.Surname == filter.Surname)
+                    && (String.IsNullOrEmpty(filter.Name) ? true : x.Name == filter.Name)
+                    && (String.IsNullOrEmpty(filter.Patronymic) ? true : x.Patronymic == filter.Patronymic)
+                ).ToList();
                 foreach (var employee in tempEmployees)
                 {
                     DateTime? lastDate = null;
@@ -69,7 +75,9 @@ namespace ABMCloud.Dao
 
                     employees.Add(item);
                 }
-                return employees;
+                return employees.Where(x =>
+                           (filter.DateFrom.HasValue ? x.LastVacationDate >= filter.DateFrom : true)
+                        && (filter.DateTo.HasValue ? x.LastVacationDate <= filter.DateTo : true)).ToList();
             }
         }
 

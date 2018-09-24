@@ -42,6 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EmployeesData\EmployeeFilter.cs" />
     <Compile Include="EmployeesData\EmployeeInfo.cs" />
     <Compile Include="VacationsData\VacationInfo.cs" />
     <Compile Include="VacationsData\VacationFilter.cs" />

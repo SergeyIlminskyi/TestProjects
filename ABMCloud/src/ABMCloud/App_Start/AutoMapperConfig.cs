@@ -13,6 +13,7 @@ namespace ABMCloud
                 cfg.CreateMap<EmployeeInfo, EmployeeDetailsModel>();
                 cfg.CreateMap<EmployeeDetailsModel, EmployeeInfo>();
                 cfg.CreateMap<VacationFilter, VacationFilterModel>();
+                cfg.CreateMap<EmployeeFilter, EmployeeFilterModel>();
             });
         }
     }

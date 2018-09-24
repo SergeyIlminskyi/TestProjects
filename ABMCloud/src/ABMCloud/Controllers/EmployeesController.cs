@@ -22,7 +22,7 @@ namespace ABMCloud
 
             var сollaboratorsЬodel = new EmployeeModel()
             {
-                EmployeesList = Mapper.Map<List<EmployeeDetailsModel>>(_repository.GetEmployees())
+                EmployeesList = Mapper.Map<List<EmployeeDetailsModel>>(_repository.GetEmployees(Mapper.Map<Entities.EmployeeFilter>(filter)))
             };
 
             filter.CurrentPagingInfo.TotalItems = 50;
