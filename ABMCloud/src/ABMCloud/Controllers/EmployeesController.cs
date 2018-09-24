@@ -5,7 +5,7 @@ using ABMCloud.Helpers;
 using ABMCloud.Dao;
 using AutoMapper;
 
-namespace ABMCloud.Controllers
+namespace ABMCloud
 {
     public class EmployeeController : BaseController
     {
@@ -54,6 +54,8 @@ namespace ABMCloud.Controllers
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult AddOrEditEmployee(EmployeeDetailsModel model)
         {
+            base.ShowSuccessMessage = true;
+
             if (model.Id > 0)
                 _repository.EditEmployee(Mapper.Map<Entities.EmployeeInfo>(model));
             else

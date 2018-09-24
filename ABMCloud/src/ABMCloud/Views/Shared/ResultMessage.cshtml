@@ -1,6 +1,6 @@
-﻿@using ABMCloud.Controllers;
+﻿@using ABMCloud;
 
-@if (TempData[Alerts.SUCCESS] != null && (TempData[Alerts.ERROR] == null && TempData[Alerts.ERRORLIST] == null))
+@if (TempData[Alerts.SUCCESS] != null && (TempData[Alerts.ERROR] == null))
 {
     <br />
     <div class="notification success" id="divSuccess">

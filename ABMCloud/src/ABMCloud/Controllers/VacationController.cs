@@ -5,8 +5,8 @@ using ABMCloud.Helpers;
 using ABMCloud.Dao;
 
 
-namespace ABMCloud.Controllers
-{
+namespace ABMCloud
+{ 
     public class VacationController : BaseController
     {
         private readonly IRepository _repository;

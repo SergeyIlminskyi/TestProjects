@@ -13,25 +13,13 @@ namespace ABMCloud.Filters
 
             if (!exceptionContext.ExceptionHandled && exceptionContext.Exception is Exception)
             {
-                //exceptionContext.Result =
+                exceptionContext.Result = new ViewResult
+                {
+                    ViewName = "RangeErrorPage",
+                    ViewData = exceptionContext.Controller.ViewData
+                };
                 exceptionContext.ExceptionHandled = true;
-
-
             }
-
-
-            //if (!exceptionContext.ExceptionHandled)
-            //{
-            //    string message = baseController._repository.RepositoryResponseMessage;
-            //    _logger.Error(message);
-
-            //    filterContext.Result = new ViewResult
-            //    {
-            //        ViewName = "RangeErrorPage",
-            //        ViewData = filterContext.Controller.ViewData
-            //    };
-            //    filterContext.ExceptionHandled = true;
-            //}
         }
     }
 }

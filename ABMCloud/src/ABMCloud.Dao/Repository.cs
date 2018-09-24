@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Data.Entity;
-using System.Text;
 using ABMCloud.Entities;
 using ABMCloud.Dao.Context;
 using ABMCloud.Dao.Entitis;
@@ -118,7 +117,6 @@ namespace ABMCloud.Dao
                         && (filter.EndDateFrom.HasValue ? x.EndDate >= filter.EndDateFrom : true)
                         && (filter.EndDateTo.HasValue ? x.EndDate <= filter.EndDateTo : true)
                 ))
-
                 {
                     var item = new VacationInfo()
                     {
