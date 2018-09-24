@@ -15,40 +15,40 @@
         <div class="form-group">
             <label class="control-label col-sm-2">Name:</label>
             <div class="col-sm-10">
-                @Html.EditorFor(model => model.EmployeeDetails.Name, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
             </div>
         </div>
         <div class="form-group">
             <label class="control-label col-sm-2">Surname:</label>
             <div class="col-sm-10">
-                @Html.EditorFor(model => model.EmployeeDetails.Surname, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                @Html.EditorFor(model => model.Surname, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
             </div>
         </div>
 
         <div class="form-group">
             <label class="control-label col-sm-2">Patronymic:</label>
             <div class="col-sm-10">
-                @Html.EditorFor(model => model.EmployeeDetails.Patronymic, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                @Html.EditorFor(model => model.Patronymic, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
             </div>
         </div>
 
         <div class="form-group">
             <label class="control-label col-sm-2">Birthday:</label>
             <div class="col-sm-10">
-                @Html.EditorFor(model => model.EmployeeDetails.Birthday, new { htmlAttributes = new { @class = "form-control w100", @readonly = "readonly" } })
+                @Html.EditorFor(model => model.Birthday, new { htmlAttributes = new { @class = "form-control w100", @readonly = "readonly" } })
             </div>
         </div>
 
         <div class="form-group">
             <label class="control-label col-sm-2">Last date of vacation:</label>
             <div class="col-sm-10">
-                @Html.EditorFor(model => model.EmployeeDetails.LastVacationDate, new { htmlAttributes = new { @class = "form-control w100", @readonly = "readonly" } })
+                @Html.EditorFor(model => model.LastVacationDate, new { htmlAttributes = new { @class = "form-control w100", @readonly = "readonly" } })
             </div>
         </div>
 
         @using (Ajax.BeginForm("VacationsByEmploee", "Vacation", new AjaxOptions() { HttpMethod = "Post", UpdateTargetId = "vacations" }, new { @class = "form-group" }))
         {
-            @Html.HiddenFor(model => model.EmployeeDetails.Id)
+            @Html.HiddenFor(model => model.Id)
             <div id="vacations"></div>
 
             <button class="btn btn-warning" type="button" onclick="window.location.href = '@Url.Action("VacationsByEmploee", "Employee", new { FilterAction = "resetFilter" })'">

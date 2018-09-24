@@ -9,7 +9,9 @@ namespace ABMCloud.Dao
 {
     public interface IRepository
     {
-        int AddEmployee(EmployeeInfo collaborator);
+        int AddEmployee(EmployeeInfo employee);
+
+        void EditEmployee(EmployeeInfo employee);
 
         List<EmployeeInfo> GetEmployees();
 

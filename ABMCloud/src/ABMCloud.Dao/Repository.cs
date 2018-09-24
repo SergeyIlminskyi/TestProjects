@@ -11,16 +11,16 @@ namespace ABMCloud.Dao
 {
     public class Repository : IRepository
     {
-        public int AddEmployee(EmployeeInfo collaborator)
+        public int AddEmployee(EmployeeInfo employee)
         {
             using (EmployeeContext db = new EmployeeContext())
             {
                 var item = db.Employees.Add(new Entitis.Employee()
                 {
-                    Name = collaborator.Name,
-                    Surname = collaborator.Surname,
-                    Patronymic = collaborator.Patronymic,
-                    Birthday = collaborator.Birthday,
+                    Name = employee.Name,
+                    Surname = employee.Surname,
+                    Patronymic = employee.Patronymic,
+                    Birthday = employee.Birthday,
                     CreatedOn = DateTime.Now
                 });
 
@@ -30,6 +30,10 @@ namespace ABMCloud.Dao
             }
         }
 
+        public void EditEmployee(EmployeeInfo employee)
+        {
+
+        }
         public List<EmployeeInfo> GetEmployees()
         {
             using (EmployeeContext db = new EmployeeContext())

@@ -17,9 +17,7 @@ namespace ABMCloud
 
             builder.RegisterControllers(typeof(Global).Assembly);
 
-
             builder.RegisterType<Repository>().As<IRepository>().SingleInstance();
-            //builder.RegisterType<MatrixModel>().As<IMatrixModel>().SingleInstance();
 
             var container = builder.Build();
 

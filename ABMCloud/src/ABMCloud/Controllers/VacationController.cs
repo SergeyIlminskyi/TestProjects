@@ -23,7 +23,7 @@ namespace ABMCloud.Controllers
             filter = ProcessFilter<VacationFilterModel>(filter);
 
             var сollaboratorsЬodel = new VacationModel();//репо
-            сollaboratorsЬodel.VacationsList = _repository.GetVacationsByVacationistId(model.EmployeeDetails.Id);
+            сollaboratorsЬodel.VacationsList = _repository.GetVacationsByVacationistId(model.Id);
 
             filter.CurrentPagingInfo.TotalItems = 50;
 

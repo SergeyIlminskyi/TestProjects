@@ -3,6 +3,7 @@ using System.Web.Mvc;
 using ABMCloud.Models;
 using ABMCloud.Helpers;
 using ABMCloud.Dao;
+using AutoMapper;
 
 namespace ABMCloud.Controllers
 {
@@ -34,24 +35,26 @@ namespace ABMCloud.Controllers
         [AcceptVerbs(HttpVerbs.Get)]
         public ActionResult EmployeeDetails(int id)
         {
-            return View(new EmployeeDetailsModel()
-            {
-                EmployeeDetails = _repository.GetEmployeeDetailsById((int)id)
-            });
+            return View(Mapper.Map<EmployeeDetailsModel>(_repository.GetEmployeeDetailsById(id)));
         }
 
         [AcceptVerbs(HttpVerbs.Get)]
         public ActionResult AddOrEditEmployee(int? id)
         {
-            return View(new EmployeeDetailsModel()
-            {
-                EmployeeDetails = _repository.GetEmployeeDetailsById((int)id)
-            });
+            if(id.HasValue)
+                return View(Mapper.Map<EmployeeDetailsModel>(_repository.GetEmployeeDetailsById((int)id)));
+            else
+                return View(new EmployeeDetailsModel());
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult AddOrEditEmployee(EmployeeDetailsModel model)
         {
+            if (model.Id > 0)
+                _repository.EditEmployee(Mapper.Map<Entites.EmployeeInfo>(model));
+            else
+                _repository.AddEmployee(Mapper.Map<Entites.EmployeeInfo>(model));
+
             return View(model);
         }
 
@@ -67,7 +70,7 @@ namespace ABMCloud.Controllers
             filter = ProcessFilter<VacationFilterModel>(filter);
 
             var сollaboratorsЬodel = new VacationModel();//репо
-            сollaboratorsЬodel.VacationsList = _repository.GetVacationsByVacationistId(model.EmployeeDetails.Id);
+            сollaboratorsЬodel.VacationsList = _repository.GetVacationsByVacationistId(model.Id);
 
             filter.CurrentPagingInfo.TotalItems = 50;
 
