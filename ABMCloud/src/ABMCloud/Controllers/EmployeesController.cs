@@ -1,4 +1,4 @@
-﻿using System.Web;
+﻿using System.Collections.Generic;
 using System.Web.Mvc;
 using ABMCloud.Models;
 using ABMCloud.Helpers;
@@ -20,8 +20,10 @@ namespace ABMCloud.Controllers
         {
             filter = ProcessFilter<EmployeeFilterModel>(filter);
 
-            var сollaboratorsЬodel = new EmployeeModel();//репо
-            сollaboratorsЬodel.EmployeesList = _repository.GetEmployees();
+            var сollaboratorsЬodel = new EmployeeModel()
+            {
+                EmployeesList = Mapper.Map<List<EmployeeDetailsModel>>(_repository.GetEmployees())
+            };
 
             filter.CurrentPagingInfo.TotalItems = 50;
 

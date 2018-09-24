@@ -21,7 +21,7 @@
                 <td class="col-md-2">@item.Surname</td>
                 <td class="col-md-2">@item.Name</td>
                 <td class="col-md-2">@item.Patronymic</td>
-                <td class="col-md-4">@item.LastVacationDate</td>
+                <td class="col-md-4">@(item.LastVacationDate.HasValue ? item.LastVacationDate.Value.ToString("dd.MM.yyyy") : "")</td>
                 <td>
                     <button type="button" class="btn btn-info btn-xs" onclick="window.location.href = '@Url.Action("EmployeeDetails", "Employee", new { id = item.Id })'">
                         <span class="glyphicon glyphicon-info-sign"></span>

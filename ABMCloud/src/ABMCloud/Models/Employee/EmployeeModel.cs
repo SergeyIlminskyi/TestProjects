@@ -8,7 +8,7 @@ namespace ABMCloud.Models
 {
     public class EmployeeModel
     {
-        public IReadOnlyList<EmployeeInfo> EmployeesList { get; set; }
+        public IReadOnlyList<EmployeeDetailsModel> EmployeesList { get; set; }
 
         public long EmployeesCount { get; set; } //вынести в базовый
     }
