@@ -22,6 +22,30 @@ textarea {
     margin-left: 15px;
 }
 
+.field-validation-error {
+    color: #b94a48;
+}
+ 
+.field-validation-valid {
+    display: none;
+}
+ 
+input.input-validation-error {
+    border: 1px solid #b94a48;
+}
+ 
+input[type="checkbox"].input-validation-error {
+    border: 0 none;
+}
+ 
+.validation-summary-errors {
+    color: #b94a48;
+}
+ 
+.validation-summary-valid {
+    display: none;
+}
+
 .w5 { width:5px; }
 .w10 { width:10px; }
 .w15 { width:15px; }

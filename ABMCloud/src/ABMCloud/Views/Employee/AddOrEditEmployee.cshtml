@@ -15,6 +15,7 @@
             <label class="control-label col-sm-2">Surname:</label>
             <div class="col-sm-10">
                 @Html.EditorFor(model => model.Surname, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Surname)
             </div>
         </div>
 
@@ -22,6 +23,7 @@
             <label class="control-label col-sm-2">Name:</label>
             <div class="col-sm-10">
                 @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Name)
             </div>
         </div>
 
@@ -29,6 +31,7 @@
             <label class="control-label col-sm-2">Patronymic:</label>
             <div class="col-sm-10">
                 @Html.EditorFor(model => model.Patronymic, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Patronymic)
             </div>
         </div>
 
@@ -36,6 +39,7 @@
             <label class="control-label col-sm-2">Birthday:</label>
             <div class="col-sm-10">
                 @Html.EditorFor(model => model.Birthday, new { htmlAttributes = new { @class = "datepicker form-control w100" } })
+                @Html.ValidationMessageFor(model => model.Birthday)
             </div>
         </div>
 

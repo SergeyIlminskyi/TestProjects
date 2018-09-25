@@ -54,14 +54,17 @@ namespace ABMCloud
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult AddOrEditEmployee(EmployeeDetailsModel model)
         {
-            throw new System.Exception();
+            if (ModelState.IsValid)
+            {
+                base.ShowSuccessMessage = true;
 
-            base.ShowSuccessMessage = true;
+                if (model.Id > 0)
+                    _repository.EditEmployee(Mapper.Map<Entities.EmployeeInfo>(model));
+                else
+                    _repository.AddEmployee(Mapper.Map<Entities.EmployeeInfo>(model));
 
-            if (model.Id > 0)
-                _repository.EditEmployee(Mapper.Map<Entities.EmployeeInfo>(model));
-            else
-                _repository.AddEmployee(Mapper.Map<Entities.EmployeeInfo>(model));
+                return View(model);
+            }
 
             return View(model);
         }
