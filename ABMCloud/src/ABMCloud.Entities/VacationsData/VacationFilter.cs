@@ -15,5 +15,9 @@ namespace ABMCloud.Entities
         public DateTime? EndDateFrom { get; set; }
 
         public DateTime? EndDateTo { get; set; }
+
+        public int PageSize { get; set; }
+
+        public int CurrenPage { get; set; }
     }
 }

@@ -122,12 +122,14 @@ namespace ABMCloud.Dao
             }
                 
         }
-        public List<VacationInfo> GetVacationsByVacationistId(int id, VacationFilter filter = null)
+        public List<VacationInfo> GetVacationsByVacationistId(int id, out long totalItems, VacationFilter filter = null)
         {
             filter = filter ?? new VacationFilter();
             using (EmployeeContext db = new EmployeeContext())
             {
                 var vacationsList = new List<VacationInfo>();
+
+                totalItems = db.EmployeesVacations.Count(x => x.Vacationist.Id == id);
 
                 foreach (var vacation in db.EmployeesVacations.Include(v => v.Substitutional)
                     .Where(x => x.Vacationist.Id == id 
@@ -135,7 +137,7 @@ namespace ABMCloud.Dao
                         && (filter.StartDateTo.HasValue ? x.StartDate <= filter.StartDateTo : true)
                         && (filter.EndDateFrom.HasValue ? x.EndDate >= filter.EndDateFrom : true)
                         && (filter.EndDateTo.HasValue ? x.EndDate <= filter.EndDateTo : true)
-                ))
+                ).OrderBy(x => x.Id).Skip(filter.PageSize * (filter.CurrenPage - 1)).Take(filter.PageSize))
                 {
                     var item = new VacationInfo()
                     {
@@ -185,17 +187,17 @@ namespace ABMCloud.Dao
 
                 var v1 = new EmployeesVacation()
                 {
-                    Substitutional = e1,
-                    Vacationist = e2,
-                    StartDate = new DateTime(2018, 2, 15),
-                    EndDate = new DateTime(2018, 3, 15),
+                    Substitutional = ee1,
+                    Vacationist = ee2,
+                    StartDate = new DateTime(2012, 2, 15),
+                    EndDate = new DateTime(2012, 3, 15),
                 };
                 var v2 = new EmployeesVacation()
                 {
-                    Substitutional = e2,
-                    Vacationist = e1,
-                    StartDate = new DateTime(2018, 3, 15),
-                    EndDate = new DateTime(2018, 4, 15),
+                    Substitutional = ee2,
+                    Vacationist = ee1,
+                    StartDate = new DateTime(2012, 3, 15),
+                    EndDate = new DateTime(2012, 4, 15),
                 };
 
                 

@@ -12,7 +12,9 @@ namespace ABMCloud
             {
                 cfg.CreateMap<EmployeeInfo, EmployeeDetailsModel>();
                 cfg.CreateMap<EmployeeDetailsModel, EmployeeInfo>();
-                cfg.CreateMap<VacationFilter, VacationFilterModel>();
+                cfg.CreateMap<VacationFilterModel, VacationFilter > ()
+                    .ForMember(dest => dest.CurrenPage, opt => opt.MapFrom(c => c.CurrentPagingInfo.Page))
+                    .ForMember(dest => dest.PageSize, opt => opt.MapFrom(c => c.CurrentPagingInfo.ItemsPerPage));
                 cfg.CreateMap<EmployeeFilter, EmployeeFilterModel>();
             });
         }

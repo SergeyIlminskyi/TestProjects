@@ -70,17 +70,16 @@ namespace ABMCloud
             return View(new EmployeeDetailsModel());
         }
 
-        [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult VacationsByEmploee(EmployeeDetailsModel model, VacationFilterModel filter)
         {
             filter = ProcessFilter<VacationFilterModel>(filter);
 
+            long totalItems;
             var сollaboratorsЬodel = new VacationModel()
             {
-                VacationsList = _repository.GetVacationsByVacationistId(model.Id, Mapper.Map<Entities.VacationFilter>(filter)),
+                VacationsList = _repository.GetVacationsByVacationistId(model.Id, out totalItems, Mapper.Map<Entities.VacationFilter>(filter)),
             };
-
-            filter.CurrentPagingInfo.TotalItems = 50;
+            filter.CurrentPagingInfo.TotalItems = totalItems;
 
             return PartialView(new VacationViewModel()
             {
