@@ -28,18 +28,18 @@ namespace ABMCloud.HtmlHelpers
             var startPage = (filter.Page - 1) / PagerSize * 10 + 1;
             var lastPage = ((filter.Page - 1) / PagerSize + 1) * 10;
 
-            result.Append("<ul class=\"page-pager__nav\">");
+            result.Append("<ul class=\"pagination\">");
 
             if (currentFilter.Page > currentFilter.ItemsPerPage)
             {
                 currentFilter.Page = startPage - currentFilter.ItemsPerPage;
-                result.Append("<li><a href=\"" + pageUrl(currentFilter) + "\" class = \"page-pager__nav-item\">...</a></li>");
+                result.Append("<li class = \"page-item \"><a href=\"" + pageUrl(currentFilter) + "\" class = \"page-link\">...</a></li>");
             }
 
             if (filter.Page > 1)
             {
                 currentFilter.Page = filter.Page - 1;
-                result.Append("<li><a href=\"" + pageUrl(currentFilter) + "\" class = \"page-pager__nav-item\">«</a></li>");
+                result.Append("<li class = \"page-item \"><a href=\"" + pageUrl(currentFilter) + "\" class = \"page-link\">«</a></li>");
             }
 
             lastPage = lastPage > filter.TotalPages ? filter.TotalPages : lastPage;
@@ -47,26 +47,20 @@ namespace ABMCloud.HtmlHelpers
             for (int i = startPage; i <= lastPage; i++)
             {
                 currentFilter.Page = i;
-                result.Append(i == filter.Page ? "<li class = \"page-pager__nav-item is--active\">" : "<a href=\"" + pageUrl(currentFilter) + "\" class = \"page-pager__nav-item\">");
-                var tag = new TagBuilder("a");
-                tag.MergeAttribute("href", pageUrl(currentFilter));
-                result.Append(i);
-                //tag.InnerHtml = i.ToString(CultureInfo.InvariantCulture);
-                result.Append(tag);
-                
-                result.Append("</li>");
+                result.Append(i == filter.Page ? "<li class = \"page-link active\"><a class = \"page-link\">" + i + "</a></li>"
+                    : "<li class = \"page-link \"><a href=\"" + pageUrl(currentFilter) + "\" class = \"page-link\">" + i + "</a></li>");
             }
 
             if (filter.Page < filter.TotalPages)
             {
                 currentFilter.Page = filter.Page + 1;
-                result.Append("<li><a href=\"" + pageUrl(currentFilter) + "\" class = \"page-pager__nav-item\">»</a></li>");
+                result.Append("<li class = \"page-item \"><a href=\"" + pageUrl(currentFilter) + "\" class = \"page-link\">»</a></li>");
             }
 
             if (lastPage < filter.TotalPages)
             {
                 currentFilter.Page = lastPage + 1;
-                result.Append("<li><a href=\"" + pageUrl(currentFilter) + "\" class = \"page-pager__nav-item\">...</a></li>");
+                result.Append("<li class = \"page-item \"><a href=\"" + pageUrl(currentFilter) + "\" class = \"page-link\">...</a></li>");
             }
 
             result.Append("</ul>");

@@ -19,13 +19,13 @@ namespace ABMCloud
         public ActionResult EmployeesList(EmployeeFilterModel filter)
         {
             filter = ProcessFilter<EmployeeFilterModel>(filter);
-
+            long totalItems;
             var сollaboratorsЬodel = new EmployeeModel()
             {
-                EmployeesList = Mapper.Map<List<EmployeeDetailsModel>>(_repository.GetEmployees(Mapper.Map<Entities.EmployeeFilter>(filter)))
+                EmployeesList = Mapper.Map<List<EmployeeDetailsModel>>(_repository.GetEmployees(Mapper.Map<Entities.EmployeeFilter>(filter),out totalItems))
             };
 
-            filter.CurrentPagingInfo.TotalItems = 50;
+            filter.CurrentPagingInfo.TotalItems = totalItems;
 
             return View(new EmployeeViewModel()
             {
@@ -54,6 +54,8 @@ namespace ABMCloud
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult AddOrEditEmployee(EmployeeDetailsModel model)
         {
+            throw new System.Exception();
+
             base.ShowSuccessMessage = true;
 
             if (model.Id > 0)

@@ -144,6 +144,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\VacationController.cs" />
     <Compile Include="Filters\HandleErrorFilter.cs" />
+    <Compile Include="Filters\ResultHandlerFilter.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

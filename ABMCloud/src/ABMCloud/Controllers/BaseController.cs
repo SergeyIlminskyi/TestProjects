@@ -47,10 +47,9 @@ namespace ABMCloud
             TempData.Add(Alerts.INFORMATION, message);
         }
 
-        public void Error(string message, string resCode, string errormess)
+        public void Error(string message)
         {
             TempData.Clear();
-            if (!string.IsNullOrEmpty(resCode)) message += " : " + resCode + " - " + errormess;
             TempData.Add(Alerts.ERROR, message);
         }
 

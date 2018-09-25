@@ -42,7 +42,13 @@ namespace ABMCloud.Test
 
             _repository.AddEmployee(item1);
             _repository.AddEmployee(item2);
-            var employees = _repository.GetEmployees();
+            long totalItems;
+            var filter = new EmployeeFilter()
+            {
+                CurrenPage = 1,
+                PageSize = 10
+            };
+            var employees = _repository.GetEmployees(filter, out totalItems);
             Assert.IsTrue(employees.Count > 1);
         }
 

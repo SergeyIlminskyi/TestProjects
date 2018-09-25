@@ -13,7 +13,7 @@ namespace ABMCloud.Dao
 
         void EditEmployee(EmployeeInfo employee);
 
-        List<EmployeeInfo> GetEmployees(EmployeeFilter filter = null);
+        List<EmployeeInfo> GetEmployees(EmployeeFilter filter, out long totalItems);
 
         EmployeeInfo GetEmployeeDetailsById(int id);
 
