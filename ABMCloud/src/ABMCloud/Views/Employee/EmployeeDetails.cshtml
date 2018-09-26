@@ -52,10 +52,15 @@
 
             <div id="vacations"></div>
 
-            
+
         }
 
-
+        <div class="container">
+            <button type="button" class="btn btn-success pull-right" onclick="window.location.href = '@Url.Action("AddVacation", "Employee", new { vacationistId = Model.Id })'">
+                Add
+                <span class="glyphicon glyphicon-plus"></span>
+            </button>
+        </div>
 
 
 

@@ -44,14 +44,38 @@ namespace ABMCloud.Dao
                 db.SaveChanges();
             }
         }
+
+        public List<EmployeeInfo> GetAllEmployees()
+        {
+            using (EmployeeContext db = new EmployeeContext())
+            {
+                var employeesResult = new List<EmployeeInfo>();
+
+                foreach (var employee in db.Employees)
+                {
+                    DateTime? lastDate = null;
+
+                    var item = new EmployeeInfo()
+                    {
+                        Id = employee.Id,
+                        Name = employee.Name,
+                        Surname = employee.Surname,
+                        Patronymic = employee.Patronymic,
+                        Birthday = employee.Birthday
+                    };
+
+                    employeesResult.Add(item);
+                }
+
+                return employeesResult;
+            }
+        }
         public List<EmployeeInfo> GetEmployees(EmployeeFilter filter, out long totalItems)
         {
             filter = filter ?? new EmployeeFilter();
 
             using (EmployeeContext db = new EmployeeContext())
             {
-                totalItems = db.Employees.Count();
-
                 var employeesResult = new List<EmployeeInfo>();
 
                 var tempEmployees = db.Employees.Where(x => 

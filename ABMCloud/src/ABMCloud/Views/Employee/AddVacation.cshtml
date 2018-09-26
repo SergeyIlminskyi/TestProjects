@@ -1,0 +1,54 @@
+﻿@model ABMCloud.Models.VacationDetailsModel
+
+@{
+    ViewBag.Title = "Add vacation";
+}
+
+<div class="container body-content">
+    <h1>@ViewBag.Title</h1>
+    @using (Html.BeginForm("AddVacation", "Employee", FormMethod.Post, new { @class = "form-horizontal" }))
+    {
+        @Html.HiddenFor(model => model.VacationistId)
+
+        <div class="form-group">
+            <label class="control-label col-sm-2">Vacationist:</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" value="@Model.Vacationist.FullName" disabled />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-sm-2">Substitutional:</label>
+            <div class="col-sm-10">
+                @Html.DropDownListFor(model => model.SubstitutionalId, Model.Substitutional, "----------------Substitutional---------------", new { @class = "form-control" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-sm-2">Start date:</label>
+            <div class="col-sm-10">
+                @Html.EditorFor(model => model.StartDate, new { htmlAttributes = new { @class = "datepicker form-control w100" } })
+                @Html.ValidationMessageFor(model => model.StartDate)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-sm-2">End date:</label>
+            <div class="col-sm-10">
+                @Html.EditorFor(model => model.EndDate, new { htmlAttributes = new { @class = "datepicker form-control w100" } })
+                @Html.ValidationMessageFor(model => model.EndDate)
+            </div>
+        </div>
+
+        <button class="btn btn-info" type="button" onclick="window.location.href = '@Url.Action("EmployeesList", "Employee")'">
+            Back
+            <span class="glyphicon glyphicon-arrow-left"></span>
+        </button>
+        <button name="FilterAction" class="btn btn-success" type="submit" value="applyFilter" id="submitButton">
+            Save
+            <span class="glyphicon glyphicon-ok"></span>
+        </button>
+
+    }
+</div>
+

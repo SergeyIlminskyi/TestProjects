@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Web.Mvc;
 using ABMCloud.Models;
 using ABMCloud.Helpers;
@@ -69,12 +70,6 @@ namespace ABMCloud
             return View(model);
         }
 
-        [AcceptVerbs(HttpVerbs.Get)]
-        public ActionResult RemoveEmployee(int id)
-        {
-            return View(new EmployeeDetailsModel());
-        }
-
         public ActionResult VacationsByEmploee(EmployeeDetailsModel model, VacationFilterModel filter)
         {
             filter = ProcessFilter<VacationFilterModel>(filter);
@@ -91,6 +86,30 @@ namespace ABMCloud
                 Filter = filter,
                 VacationsModel = сollaboratorsЬodel
             });
+        }
+
+        [AcceptVerbs(HttpVerbs.Get)]
+        public ActionResult AddVacation(int vacationistId)
+        {
+            var model = new VacationDetailsModel();
+            var employees = _repository.GetAllEmployees().Where(x => x.Id != vacationistId);
+            model.VacationistId = vacationistId;
+            model.Vacationist = Mapper.Map<EmployeeSimpleModel>(_repository.GetEmployeeDetailsById(vacationistId));
+            model.Substitutional = new SelectList(Mapper.Map<List<EmployeeSimpleModel>>(employees), "Id", "FullName");
+            return View(model);
+        }
+
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult AddVacation(VacationDetailsModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                base.ShowSuccessMessage = true;
+                _repository.AddVacation(Mapper.Map<Entities.VacationInfo>(model));
+                return View(model);
+            }
+
+            return View(model);
         }
     }
 }
