@@ -17,8 +17,8 @@
                     <td class="col-md-2">
                         @Html.ActionLink(item.Substitutional.Surname + " " + item.Substitutional.Name + " " + item.Substitutional.Patronymic, "EmployeeDetails", "Employee", new { id = item.Substitutional.Id }, null)
                     </td>
-                    <td class="col-md-2">@item.StartDate</td>
-                    <td class="col-md-2">@item.EndDate</td>
+                    <td class="col-md-2">@item.StartDate.ToString("dd.MM.yyyy")</td>
+                    <td class="col-md-2">@item.EndDate.ToString("dd.MM.yyyy")</td>
                 </tr>
             }
         </tbody>
