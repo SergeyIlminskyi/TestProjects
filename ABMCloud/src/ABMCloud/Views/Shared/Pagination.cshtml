@@ -9,9 +9,9 @@
         @{
             var itemsPerPage = @Model.ItemsPerPage >= @Model.TotalItems ? @Model.TotalItems : @Model.ItemsPerPage;
         }
-        @Html.Raw(" Записей:") @itemsPerPage @Html.Raw(" из ") @Model.TotalItems
+        @Html.Raw(" Records:") @itemsPerPage @Html.Raw(" from ") @Model.TotalItems
         <div class="page-pager__text-gutter">
-            Показывать по:
+            Show by:
             @Html.ListCountPager(Model.ItemsPerPage, Model.TotalItems, new[] { 10, 20, 50, 100 }, string.Empty, Model.RouteValueDictionary)
         </div>
     </div>

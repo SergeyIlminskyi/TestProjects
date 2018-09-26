@@ -8,6 +8,7 @@ namespace ABMCloud.Models
     {
         public int VacationistId { get; set; }
 
+        [Required(ErrorMessage = "The Substitutional must be selected.")]
         public int SubstitutionalId { get; set; }
 
         public SelectList Substitutional { get; set; }
