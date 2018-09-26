@@ -100,11 +100,5 @@ namespace ABMCloud.Test
             Assert.IsTrue(_repository.AddVacation(vacation) > 0);
         }
 
-
-        [Test, Order(4)]
-        public void Test()
-        {
-             _repository.Test();
-        }
     }
 }

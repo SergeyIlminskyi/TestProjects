@@ -22,8 +22,5 @@ namespace ABMCloud.Dao
         int AddVacation(VacationInfo vacation);
 
         List<VacationInfo> GetVacationsByVacationistId(int id, out long totalItems, VacationFilter filter = null);
-
-
-        void Test();
     }
 }

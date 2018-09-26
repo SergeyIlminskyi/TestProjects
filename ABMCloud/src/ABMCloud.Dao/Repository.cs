@@ -192,51 +192,5 @@ namespace ABMCloud.Dao
                 return vacationsList;
             }
         }
-        public void Test()
-        {
-            using (EmployeeContext db = new EmployeeContext())
-            {
-
-                var e1 = new Employee()
-                {
-                    Id = 1,
-                    Name = "Danil",
-                    Surname = "Petrov",
-                    Patronymic = "Ivanovich",
-                    Birthday = new DateTime(1978, 6, 25)
-                };
-                var e2 = new Employee()
-                {
-                    Id = 2,
-                    Name = "Stanislav",
-                    Surname = "Honcharov",
-                    Patronymic = "Sergeevich",
-                    Birthday = new DateTime(1989, 2, 15)
-                };
-                var ee1 = db.Employees.FirstOrDefault(x => x.Id == 1);
-                var ee2 = db.Employees.FirstOrDefault(x => x.Id == 2);
-
-
-                var v1 = new EmployeesVacation()
-                {
-                    Substitutional = ee1,
-                    Vacationist = ee2,
-                    StartDate = new DateTime(2012, 2, 15),
-                    EndDate = new DateTime(2012, 3, 15),
-                };
-                var v2 = new EmployeesVacation()
-                {
-                    Substitutional = ee2,
-                    Vacationist = ee1,
-                    StartDate = new DateTime(2012, 3, 15),
-                    EndDate = new DateTime(2012, 4, 15),
-                };
-
-                
-                db.EmployeesVacations.Add(v1);
-                db.EmployeesVacations.Add(v2);
-                db.SaveChanges();
-            }
-        }
     }
 }
