@@ -140,8 +140,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\BaseController.cs" />
-    <Compile Include="Controllers\EmployeesController.cs" />
-    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\EmployeeController.cs" />
     <Compile Include="Filters\HandleErrorFilter.cs" />
     <Compile Include="Filters\ResultHandlerFilter.cs" />
     <Compile Include="Global.asax.cs">
@@ -171,7 +170,6 @@
     <None Include="packages.config" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\Pagination.cshtml" />
     <Content Include="Views\Shared\RangeErrorPage.cshtml" />
     <Content Include="Views\Shared\ResultMessage.cshtml" />

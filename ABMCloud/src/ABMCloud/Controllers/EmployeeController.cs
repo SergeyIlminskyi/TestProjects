@@ -93,19 +93,28 @@ namespace ABMCloud
         {
             var model = new VacationDetailsModel();
             var employees = _repository.GetAllEmployees().Where(x => x.Id != vacationistId);
+
             model.VacationistId = vacationistId;
             model.Vacationist = Mapper.Map<EmployeeSimpleModel>(_repository.GetEmployeeDetailsById(vacationistId));
             model.Substitutional = new SelectList(Mapper.Map<List<EmployeeSimpleModel>>(employees), "Id", "FullName");
+
             return View(model);
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult AddVacation(VacationDetailsModel model)
         {
+            var employees = _repository.GetAllEmployees().Where(x => x.Id != model.VacationistId);
+
+            model.Vacationist = Mapper.Map<EmployeeSimpleModel>(_repository.GetEmployeeDetailsById(model.VacationistId));
+            model.Substitutional = new SelectList(Mapper.Map<List<EmployeeSimpleModel>>(employees), "Id", "FullName");
+
             if (ModelState.IsValid)
             {
                 base.ShowSuccessMessage = true;
+
                 _repository.AddVacation(Mapper.Map<Entities.VacationInfo>(model));
+
                 return View(model);
             }
 
