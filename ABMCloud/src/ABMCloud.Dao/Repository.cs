@@ -141,8 +141,8 @@ namespace ABMCloud.Dao
             {
                 var item = db.EmployeesVacations.Add(new EmployeesVacation()
                 {
-                    Substitutional = db.Employees.FirstOrDefault(x => x.Id == vacation.Vacationist.Id),
-                    Vacationist = db.Employees.FirstOrDefault(x => x.Id == vacation.Substitutional.Id),
+                    Substitutional = db.Employees.FirstOrDefault(x => x.Id == vacation.Substitutional.Id),
+                    Vacationist = db.Employees.FirstOrDefault(x => x.Id == vacation.Vacationist.Id),
                     StartDate = vacation.StartDate,
                     EndDate = vacation.EndDate,
                     CreatedOn = DateTime.Now
@@ -169,7 +169,7 @@ namespace ABMCloud.Dao
                         && (filter.StartDateTo.HasValue ? x.StartDate <= filter.StartDateTo : true)
                         && (filter.EndDateFrom.HasValue ? x.EndDate >= filter.EndDateFrom : true)
                         && (filter.EndDateTo.HasValue ? x.EndDate <= filter.EndDateTo : true)
-                ).OrderBy(x => x.Id).Skip(filter.PageSize * (filter.CurrenPage - 1)).Take(filter.PageSize))
+                ))
                 {
                     var item = new VacationInfo()
                     {

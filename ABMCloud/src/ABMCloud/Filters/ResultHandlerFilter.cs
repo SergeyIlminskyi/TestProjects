@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Web.Mvc;
-using System.Configuration;
+﻿using System.Web.Mvc;
 
 namespace ABMCloud.Filters
 {

@@ -7,6 +7,6 @@ namespace ABMCloud.Models
     {
         public IReadOnlyList<VacationInfo> VacationsList { get; set; }
 
-        public long VacationsCount { get; set; } //вынести в базовый
+        public long VacationsCount { get; set; }
     }
 }

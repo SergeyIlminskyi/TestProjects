@@ -28,7 +28,7 @@
         <div class="form-group">
             <label class="control-label col-sm-2">Start date:</label>
             <div class="col-sm-10">
-                @Html.EditorFor(model => model.StartDate, new { htmlAttributes = new { @class = "datepicker form-control w100" } })
+                @Html.EditorFor(model => model.StartDate, new { htmlAttributes = new { @class = "datepicker form-control w100", @autocomplete = "off" } })
                 @Html.ValidationMessageFor(model => model.StartDate)
             </div>
         </div>
@@ -36,7 +36,7 @@
         <div class="form-group">
             <label class="control-label col-sm-2">End date:</label>
             <div class="col-sm-10">
-                @Html.EditorFor(model => model.EndDate, new { htmlAttributes = new { @class = "datepicker form-control w100" } })
+                @Html.EditorFor(model => model.EndDate, new { htmlAttributes = new { @class = "datepicker form-control w100", @autocomplete = "off" } })
                 @Html.ValidationMessageFor(model => model.EndDate)
             </div>
         </div>

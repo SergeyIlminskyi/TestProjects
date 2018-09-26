@@ -10,7 +10,6 @@ namespace ABMCloud.Models
 
         public int SubstitutionalId { get; set; }
 
-        [Required]
         public SelectList Substitutional { get; set; }
 
         public EmployeeSimpleModel Vacationist { get; set; }
