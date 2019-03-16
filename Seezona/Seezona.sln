@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.421
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{8920234A-6502-4204-A0D4-73C100FB4FED}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Seezona.Api", "Seezona.Api\Seezona.Api.csproj", "{87A7508A-FDD8-4266-B2F1-FB8447C77522}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Seezona.Services", "Seezona.Services\Seezona.Services.csproj", "{E1D52DD7-8DAB-4AE9-8E77-840F3CD497EF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{87A7508A-FDD8-4266-B2F1-FB8447C77522}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{87A7508A-FDD8-4266-B2F1-FB8447C77522}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{87A7508A-FDD8-4266-B2F1-FB8447C77522}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{87A7508A-FDD8-4266-B2F1-FB8447C77522}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E1D52DD7-8DAB-4AE9-8E77-840F3CD497EF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E1D52DD7-8DAB-4AE9-8E77-840F3CD497EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E1D52DD7-8DAB-4AE9-8E77-840F3CD497EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E1D52DD7-8DAB-4AE9-8E77-840F3CD497EF}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{87A7508A-FDD8-4266-B2F1-FB8447C77522} = {8920234A-6502-4204-A0D4-73C100FB4FED}
+		{E1D52DD7-8DAB-4AE9-8E77-840F3CD497EF} = {8920234A-6502-4204-A0D4-73C100FB4FED}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D1128F84-96E2-4887-ABF9-77400AF33877}
+	EndGlobalSection
+EndGlobal
